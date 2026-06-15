@@ -1,0 +1,577 @@
+CONTENTS
+Pronunciation Gulde ................................ 4
+About the Adventure ................................. 5
+Adventure Overview ................................... 5
+Adventure Background .............................. 7
+Roleplaying Devils ...................................... 8
+Life in the Nine Hells .................................. 9
+Cb. 1: A Tale of Two Cities ..................... 10
+Fall ofElturel. ............................................. l 0
+Evil in BaJdur's Gate ................................. 11
+Running This Chapter.............................. 11
+The Basilisk Gate ...................................... 12
+Elfsong Tavern ........................................... l6
+Dungeon of the Dead Three.................... 20
+Low Lantern ............................................... 28
+Van th ampur V1.11a ...................................... 32
+Under the Villa ........................................... 37
+Final Encounters in Baldur's Gate ........ 42
+journey to Candlekeep ............................. 43
+Candlekeep ................................................. 45
+Getting to Avernus .................................... 50
+
+Uldrak's Grave ...................................... 109
+Arkhan's Tower .................................... 110
+Monument to Tiamai... ........................ 112
+Bel's Forge ............................................. 113
+Sibriex .................................................... 116
+Wrecked Flying Fortress ................... ll8
+Other Locations ....................................... 122
+Styg·1an Dock
+123
+· .........................................
+Sty Watchtowers
+124
+x
+································
+Sundered Chai"ns ................................. 126
+T w d · E
+126
+he l'anFle:ing"' mporium ................ 130
+Zarie s ying rortress......................
+Roaming Encounter: Smiler
+D fit
+the e er.............................................. 133
+Ch. 4: Sword ofZarlel. .......................... 134
+Approaching the Citadel ........................ 134
+The Scab.................................................... 134
+Entering the Citadel ................................ 139
+ldyllglen ..................................................... 140
+Claiming the Sword ................................ 145
+
+Ch. 2: Elturel Has Fallen........................ 52
+Running This Chapter .............................. 52
+Arrival in E lturel.. ...................................... 52
+High Hall ..................................................... 58
+Grand Cemetery ........................................ 64
+Escaping the Siege.................................... 71
+
+Ch. S: Escape from Avernus ............... 146
+Who Should Rule Avernus? .................. 146
+
+Ch. 3: Avernus ........................................... 74
+· g Th'1s Ch apter.............................. 74
+Runnm
+What Is Avernus? ....................................... 75
+Features of Avernus .................................. 76
+· g th e p os ter J\i'1ap ............................... 79
+Usin
+Fort Knucklebone...................................... 80
+R agga d ragga Attack· s 1...............................87
+Warlords of the Avernian
+Wastelands .............................................. 90
+Q ues t L1or th e S word ................................. . 92
+Haruman's Hill ....................................... 92
+
+Baldur's Gate Today ................................159
+Government .............................................. 161
+Citizenry .................................................... 164
+Economy and Trade ................................ 165
+Religion ...................................................... 166
+Dangers in Baldur's Gate ...................... 170
+City Landmarks ....................................... 174
+Upper City ................................................. 176
+Lower City ................................................. 184
+Outer City .................................................. 194
+Beyond Baldur's Gate ............................. 201
+Baldur's Gate Character
+Backgrounds .........................................202
+Dark Secrets ............................................ 208
+
+Will Elturel Be Saved? ........................... 150
+Endgame in Elturel ................................. 154
+Baldur's Gate Gazetteer....................... 158
+History of Baldur's Gate......................... 158
+
+Hell wasp Nest......................................... 94
+Path of Demons.......................................... 96
+Spawning Trees ..................................... 96
+Tower of Urm .......................................... 97 App. A: Diabolical Deals...................... 212
+Obelisk ...................................................... 98 Infernal Contracts ................................... 214
+Mirror of Mephistar............................... 99 Archdevil Charms ................................... 215
+Pit of Shummrath ................................ 100 App. B: Infernal War Macblnes ......... 216
+Crypt of the Hellriders ........................ 101 Stat Blocks ................................................ 216
+Arches of Ulloch ................................... 103 Rules ........................................................... 216
+Kostchtchie's Maw ............................... 104 Fiendish Variations ................................. 221
+Path of Devils ........................................... 106 Chases on Avernus ..................................222
+Demon Zapper ...................................... 106
+Bone Brambles ..................................... 107
+
+App. C: Maalc Items ..............................223
+App. D: Creatures ..:............................... 228
+Amnizu ....................................................... 228
+Baphomet .................................................. 229
+Bulezau ......................................................230
+Crokek'toeck .............................................230
+Cultists of the Dead Three .................... 231
+Fiendish Flesh Golem ............................236
+Hellwasp ....................................................237
+Holl phant
+237
+y
+............................................... ..
+Merregon ...................................................238
+Na go
+238
+rzu n ................................................. ..
+Nupperibo..................................................238
+Redcap
+240
+·······················································
+Tressym .....................................................240
+White Abishai ...........................................241
+Yeenoghu ...................................................242
+Zariel ..........................................................243
+App. E: Infernal Rapture Menus ....... 244
+App. F: Story Concept Art ...................246
+App. G: lnfernal Script ......................... 256
+Maps
+1.1: Baldur's Gate. ...................................... 13
+1.2: Elfsong Tavern ................................... 17
+1.3: Dungeon of the Dead Three............ 21
+1.4: Low Lantern........................................ 29
+1.5: Vanthampur Villa............................... 33
+1.6: Under the Villa ................................... 37
+2.1: Elturel ................................................... 56
+2.2: High Hall Cathedral.......................... 61
+2.3: Hall High Cathedral,
+Choir Level .............................................. 62
+2.4: High Hall Catacombs ....................... 63
+2.5: Grand Cemetery Chapel .................. 67
+2.6: Grand Cemetery,
+Ossuary Level ......................................... 69
+3.1: Avernus................................................. 79
+3.2: Hellwasp Nest .................................... 95
+3.3: Crypt of the Hell r iders ................... 101
+3.4: Bone Brambles ................................. 108
+3.5: Bel's Forge......................................... 114
+3.6: Wrecked Flying Fortress ............... 120
+3.7: Stygian Watchtower ........................ 125
+4.1: Side View of the Scab ..................... 137
+4.2: ldyllgleo ............................................. 141
+The Sword Coast ..................................... 160
+Baidu r's Gate ............................................ 172
+Players' Map of Elturel............ Poster Map
+Players' Map of Avernus ......... Poster Map
+
+THANKS TO OUR P LAYTESTER S
+
+Trisha Arozqueta, Cory Bennett, Khrys Bennett, Cody Bowen, jean-Luc Caron, Trevor Clare, Drake Delgado, Mikayla "Irish" Ebel, Christian
+"Shiny" Eckert, Zach "Static" Eckert, Andrew Evans, Nathan Fisher, Jesse Foltz, Thomas Freed, David Hanson, Maris Hanson, Brenna Holkins,
+jerry Holkins, Danny Hyun, Joshua Kiper, Shayne Li, Jonathan Christopher Marquiss, Zack Merritt, Emmanuel john Mitsinikos, Blake Morrison,
+David Park, Nancy Rexford, Leonardo Rivera, Luke Sargent, Brandon Smith, Rob Spieldenner, Rebecca Stein, Nevin Vorfeld, Andrew White
+
+PRONUNCIATI ON GUIDE
+This guide shows how to pronounce many of the non-English names that appear in this adventure.
+
+Name
+
+Pronunciation
+
+Abishai
+Amnizu
+
+AB-ish-eye
+
+Devil loyal to Tiamat that exists outside the Infernal Hierarchy
+
+am- N EET-zoo
+AM-rik VAN-tham-pe r
+
+Greater devil that guards gateways to the Nine Hells
+Second son of Duke Thalamra Vanthampur of Baldur's Gate
+
+Amrik Vantham pur
+Arkhan the Cruel
+Asmodeus
+
+Description
+
+AR-kawn
+
+Evil dragonborn champion ofTiamat
+
+az-moh-DAY-us, or
+
+Archdevil, greater god, and Lord of the Nine Hells
+
+az-MOH-dee-us
+Baphomet
+
+BAF-oh-met
+
+Demon lord worshiped by minotaurs
+
+Balarystul
+
+bah-tar-RISS-tut
+
+Ancient copper dragon that has infiltrated the Wandering Emporium
+
+Bazelsteen
+
+BAY-zel-steen
+
+Horned devil that oversees flying fortress repairs at the Stygian Dock
+
+Belynne Stelmane
+
+beh-UN STEL-mane
+
+Bhaal
+
+BAWL
+
+One of four dukes on the Council of Four that governs Baldur's Gate
+Mortal god of murder, and one of the Dead Three
+
+Bulezau
+
+BOO-leh-zow
+
+Horned demon with rotting flesh
+
+Crokek'toeck
+
+CROW-kek-toe-ick
+
+Gargantuan demon that carries other demons inside it
+
+Dillard Portyr
+
+DILL-erd por-TEER
+
+One of four dukes on the Council of Four that governs Baidu r's Gate
+
+Falaster Fisk
+
+FAL-ass-ter
+
+Helpful spy imprisoned in the dungeon under Vanthampur Villa
+
+Fhet'Ahla
+
+fett-AH-lah
+
+Amnizu that runs From Here to Avernus in the Wandering Emporium
+
+Gabourey D'Vaelan
+
+gah-BUR-ee duh-VAY-Ian
+
+Cook who works at Vanthampur Villa in Baldur's Gate
+
+Gargauth
+
+GAR-gawth
+
+Pit fiend imprisoned in the Shield of the Hidden Lord
+
+Haruman
+
+HAIR-oo·man
+
+Fallen paladin of Elturel, now a narzugon devil loyal to Zariel
+
+jhessa Brightstar
+
+JESS-ah
+
+Priest of Lathander in ldyllglen
+
+Kaejil OrOnmar
+
+KAY-jil oh-ROON -mar
+
+Tax collector imprisoned in Vanthampur Villa
+
+Klim Jhasso
+
+JAH-soh
+
+Member of the Jhasso patriar (noble) family of Baldur's Gate
+
+Kostchtchie
+
+koss-CH EE-chee
+
+Demon lord worshiped by some frost giants
+
+Laraelra Thundreth
+
+lah-RAIL-rah THUN·dreth
+
+Liara Portyr
+
+lee-AR-ah por-TEER
+
+Proprietor of the Low Lantern, a tavern in Baldur's Gate
+Commander of the Flaming Fist recalled to Baldur's Gate
+
+Lulu
+
+LOO-loo
+
+Hollyphant suffering from memory loss
+
+Matalotok
+
+mah-tah-LOH-tok
+
+Magical hammer stolen from Kostchtchie by Zariel
+
+Mordenkainen
+
+mor-den-KAY·nen, or
+
+Famous archmage who inhabits the Tower of Urm in Avernus
+
+mor-den·KIGH-nen
+Mortlock Vanthampur
+
+MORT-lock VAN-tham-per
+
+Third son of Duke Thalamra Vanthampur of Baidu r's Gate
+
+Myrkul
+
+MER-kul
+
+Nariangela
+
+nar-ee-AWN -jeh-lah
+
+M ortal god of death and necromancy, and one of the Dead Three
+Erinyes bridge officer aboard Zariel's flying fortress
+
+Nupperibo
+
+nuh·pur-REE-boh
+
+Least devil common throughout the Nine Hells
+
+Olanthius
+
+oh-LAN-thee-us
+
+Fallen paladin ofElturel, now a death knight sworn to obey Zariel
+
+Pherria Jynks
+
+FAIR-ee-ah JINX
+
+Acolyte of Torm in Elturel's High Hall cathedral
+
+Reya Mantlemorn
+
+RAY-ah MAN-tul-morn
+
+Satiir Thione-Hhune
+
+sah-TEER thee-AWN-hewn
+
+Hellrider sworn to protect and defend Elturel
+Member of the Hhune patriar (noble) family of Baldur's Gate
+
+Shaleen Zoraz
+
+shaw·LEEN zor-AHZ
+
+Sewer maintenance supervisor imprisoned in Vanthampur Villa
+
+Sibriex
+
+SIB-ree·ex
+
+Demon that looks like a bloated sack of pustulent flesh
+
+Sylvira Savikas
+
+sil-VEER-ah sah-VEE-kas
+
+Tiefling archmage and expert on the Nine Hells
+
+Thalamra Vantham pur
+
+thah-LAM -rah VAN -tham-per
+
+One of four dukes on the Co uncil of Four that governs Baldur's Gate
+
+Thavius Kreeg
+
+THAY-vee-us KREEG
+
+Former cleric of Torm and High Overseer of Elturel
+
+Thurstwell Vanthampur THURST·well VAN -tham-per
+
+4
+
+First son of Duke Thalamra Vanthampur of Baidu r's Gate
+
+Trantolox
+
+TRAN-toe-lox
+
+Five-headed queen of evil dragons trapped in the Nine Hells
+Nalfeshnee encountered outside the Bleeding Citadel
+
+Traxigor
+
+TRAX-eh-gor
+
+Archmage transformed into an otter
+
+Ulder Ravengard
+
+UL-der RAY-ven-gard
+
+Grand Duke of Baldur's Gate and leader of the Flaming Fist
+
+Yael
+
+YAY-el
+
+Deceased defender of Elturel, now a ghost in the Nine Hells
+
+Yeenoghu
+
+yee-NO-goo
+
+Demon lord worshiped by gnolls
+
+Zari el
+
+ZAR-ee-el, or ZAIR·ee-el
+
+Archdevil and ruler of Avernus, the first layer of the Nine Hells
+
+Tiamat
+
+TEE-ah -mat
+
+A BOUT THE ADVENTURE
+ESIGNED FOR AN ADVENTURING PARTY OF
+four to six 1st-level characters, Baldur's
+Gate: Descent into Avernus is a DUNGEONS
+& DRAGONS adventure that begins in the city
+of Baldur's Gate and ends in Avernus, the
+first layer of the Nine Hells. By the end of
+the adventure. the characters should be 13th
+level or higher. To run this adventure, you
+need the fifth edition Player's Handbook,
+Dungeon Master's Guide, and Monster Manual.
+Use the first session of the game to help your players
+create their 1st-level characters. As part of this process, the players can choose their party's dark secret
+(see page 208).
+
+ADVENTU RE OVERVIEW
+The holy city of Elturel has disappeared from the Forgotten Realms and descended into Avernus, the first
+layer of the Nine Hells. This event came about as the result of an infernal bargain between the archdevil Zariel,
+who rules Avernus, and the treacherous High Overseer
+of Elturel, Thavius Kreeg. Zariel is capturing cities and
+using their citizens as fodder in the ongoing conflict between demons and devils known as the Blood War. Next
+on Zariel's list of cities is Elturel's neighbor, Baldur's
+Gate. The characters can be the heroes who descend
+into Avernus, save Elturel from certain destruction, and
+prevent a similar fate from befalling Baldur's Gate.
+
+TROUBLE I N BALDUR'S GATE
+Chapter 1 begins in the independent city of Baldur's
+Gate, where the characters find themselves trapped
+behind the city's walls after the gates are sealed to keep
+out hundreds of refugees from the neighboring land
+ofElturgard. However, the gates can't hold back news
+that Elturgard's capital has fallen, and that Grand Duke
+Ulder Ravengard of Baldur's Gate is missing-lost on
+a diplomatic mission to Elturel. The fact that Elturel's
+misfortune coincided with Ravengard's visit bas left
+Baldurians wondering whether Baldur's Gate will suffer
+Elturel's fate.
+The characters are drafted by the F laming Fist, the
+army of mercenaries tasked with protecting Baldur's
+Gate. Without Grand Duke Ulde r Ravengard to lead
+them, the Flaming Fist mercenaries are little more than
+glorified thugs. The characters' orders are to help maintain peace by rooting out and destroying followers of
+Bane, Bhaal, and Myrkul-evil gods collectively known
+as the Dead Three. These vile priests, assassins, and
+necromancers are murdering city folk at random, and
+the Flaming Fist is too distracted and disorganized
+to hunt them down and find their lair. In the course of
+their investigation, the characters learn that the Dead
+Three cultists are secretly being financed by Thalamra
+Vanthampur, one of three remaining dukes who preside
+over the government ofBaldur's Gate, using money stolen from the hoard of Ti am at, the evil queen of dragons
+imprisoned in the Nine Hells.
+
+With Grand Duke Ulder Ravengard. out of the way,
+Thalamra is paying the Dead Three to shatter confidence in the F laming Fist so that all payments to the
+decapitated organization can be cut off. Thalamra, a
+devout disciple of the archdevil Zariel, has brokered a
+deal that will enable her to claim the role of grand duke
+once the Flaming Fist disbands, paving the way for
+the city's descent into Avernus. To accomplish this last
+goal, Thalamra needs an artifact called the Shield of the
+Hidden Lord, imprisoned in which is a pit fiend named
+Gargauth. Until recently, the shield was sealed in a tomb
+under the city, but Thalamra's sons recently stole it and
+transported it to the dungeon below their villa. So corrupt is the shield that its mere presence in Baldur's Gate
+has contributed to the city's moral decay for decades.
+To keep Baldur's Gate from falling into Zariel's
+clutches, the characters must take the shjeld far away
+from the city. Reya Mantlemorn, a young knight from
+Elturel, suspects that the Vanthampurs are shelteri ng
+Thavius Kreeg at their estate and offers aid. Characters
+who storm Duke Vanthampur's villa find Thavius hidden
+in the dungeon below it. Thavius is helping Thalamra
+Vanthampur use the Shield of the Hidden Lord to bring
+about the fall of Baldur's Gate, in much the same fashion
+he used the Companion (see page 7) to doom Elturel.
+If the characters slay Thavius, his soul travels to the
+Nine Hells and re-forms as an amnizu devil on Avernus
+(see page 132).
+
+V I SIT T O CANDLEKEEP
+In the course of dealing with Thavius Kreeg and the
+Vanthampur family, characters are likely to acquire the
+Shield ofthe Hidden Lord as well as an infernal puzzle
+box that they can't open. They might also liberate a spy
+imprisoned in Duke Vanthampur's dungeon who works
+for Sylvira Savikas, a tiefling expert on the Nine Hells.
+Determined to thwart devil worshipers in positions of
+power throughout the Western Heartlands, Sylvira operates out of the library of Candlekeep and has spent years
+monitoring devil activity in Baldur's Gate, Elturel, and
+the surrounding region. Her spies are after the puzzle
+box, which is believed to contafo a copy of the fiendfah
+contract Thavius signed to seal Elturel's doom.
+lf the characters wish to help Baldur's Gate further,
+they must journey to the Nine Hells and rescue Ulder
+Ravengard from what's left of Elturel. The characters are
+urged to seek out Sylvira Savikas in Candlekeep. Sylvira
+knows the secret to unlocking Thavius's puzzle box. She
+can also facilitate the characters' descent into Avernus
+and provide them with a map (albeit an unreliable one).
+Sylvira advises characters to leave the Shield of the
+Hidden Lord in her custody. However, there are benefits
+to taking the shield with them, for Gargauth can guide
+them through the Nine Hells in ways others cannot. With
+or without the shield, the characters depart Candlekeep
+and visit Sylvira's friend, Traxigor, a wizard who can
+use the plane shift spell to get them to Elturel. At this
+wizard's tower, they meet a hollyphant (see page 237)
+named Lulu.
+ABOUT THE ADVENTURE
+
+5
+
+
