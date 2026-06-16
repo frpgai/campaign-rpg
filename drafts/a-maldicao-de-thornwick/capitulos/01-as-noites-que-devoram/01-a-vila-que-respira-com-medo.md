@@ -57,6 +57,100 @@ A porta do celeiro na extremidade leste da praça tem uma trave de madeira nova 
 
 **Como age**: Fala rápido, ansioso. Quer que os heróis resolvam o problema mas também quer supervisionar tudo. Oferece abrigo na igreja (o único lugar onde ainda reza o dia todo). Pode acompanhar os heróis até o portão do cemitério, mas não entra.
 
+## Diálogos
+
+> *Árvores de diálogo para os NPCs desta cena. Apenas o Mestre vê este conteúdo.*
+
+---
+
+### Marta
+
+**Fala inicial** (ela não se levanta do banco; olha os heróis de baixo para cima com olhos que já viram muita coisa):
+> "Chegaram tarde. Mas chegaram. Sente aí — em pé, vocês me cansam os olhos."
+
+**Opções do herói:**
+
+**[A] "O que está acontecendo nesta aldeia?"**
+→ *Marta respira fundo. Responde como quem recita uma história que já contou para si mesma muitas vezes.*
+> "Os mortos levantam. Toda noite, faz três semanas. Começou depois que enterramos o velho Harwick. Antes disso, nada. Só vida normal e chata como sempre foi."
+
+Continua com:
+> **[A1] "Por que depois de Harwick especificamente?"**
+> → *Marta aperta os lábios. Pausa longa.*
+> "Harwick era o último. O último que lembrava de coisas que eu também lembro mas nunca disse." *(para aqui — não revela mais sem pressão ou empatia)*
+>
+> Se o herói usar Persuasion com empatia (DC 13) ou disser algo que demonstre compreensão sobre injustiça ou memória:
+> - Sucesso: "Havia um curandeiro. Aldric. Morava perto do cemitério. Eu tinha oito anos quando ele foi embora. Nunca mais ninguém disse o nome dele em voz alta." ✅ *PISTA CENTRAL obtida*
+> - Falha: "Não é da conta de ninguém o que Harwick lembrava. Cuida dos mortos primeiro."
+>
+> **[A2] "Alguém já tentou fazer algo a respeito?"**
+> → "O padre tenta. As rezas não chegam lá em cima. Não sei por quê — nunca vi bênção não chegar. Isso me diz que o problema é mais velho que as rezas dele."
+
+**[B] "Você não parece assustada como os outros."**
+→ *Marta deixa escapar algo próximo de um sorriso.*
+> "Tenho noventa e um anos. Meu medo ficou no caminho faz tempo. O que me resta é curiosidade — e vergonha de coisas que não dá mais pra consertar."
+
+Continua com:
+> **[B1] "Vergonha de quê?"**
+> → *Ela olha para as mãos.*
+> "De ficar calada quando não deveria. De oito anos sendo pouca idade para fazer a coisa certa." *— pausa —* "Havia um homem que morava perto do portão do cemitério. Curandeiro. Bom homem. Foi embora num inverno muito frio e ninguém foi atrás." ✅ *PISTA CENTRAL obtida sem teste*
+>
+> **[B2] "O que deveria ter sido consertado?"**
+> → "Coisas antigas. Anteriores a vocês. Vão lá pro padre — ele sabe o que começou quando começou, mesmo que não saiba o porquê." *(encerra essa linha, redireciona para Padre Henwick)*
+
+**[C] "Precisamos de informações agora. Fale."**
+→ *Marta endireita a coluna — já estava reta, mas agora está mais.*
+> "Eu não preciso de nada de vocês. Sento neste banco há sessenta anos. Sento amanhã também, com mortos ou sem."
+> ❌ *FALHA — Marta fecha-se completamente nesta linha. Só reabre se o herói pedir desculpas (Persuasion DC 10) ou mudar para abordagem [B].*
+
+**Encerramento:**
+> "Olhem para a colina antes de anoitecer. O cemitério fica quieto de dia, mas o chão se mexe lá no fundo. Alguém que está lá dentro ainda quer ser lembrado. Não sei de mais nada."
+
+---
+
+### Padre Henwick
+
+**Fala inicial** (se aproxima com as mãos postas, voz controlada mas olhos que não conseguem esconder o cansaço):
+> "Graças aos céus. São viajantes? Guerreiros? Precisamos de ajuda — não peço isso com facilidade. Não pedi em quarenta anos de ministério. Mas peço agora."
+
+**Opções do herói:**
+
+**[A] "O que exatamente está acontecendo aqui?"**
+→ *Henwick explica com a clareza de quem já repetiu muitas vezes, tentando convencer a si mesmo que as palavras fazem sentido.*
+> "Há três semanas, toda noite, mortos levantam do cemitério ao norte. São nossos mortos — aldeões que conheço pelos nomes nas lápides. Eles descem até a praça, ficam um tempo, e voltam antes do amanhecer. Não atacam com intenção — mas matam por acidente, por força cega. Já perdemos dois."
+
+Continua com:
+> **[A1] "Suas bênçãos não funcionam?"**
+> → *Henwick hesita — esta pergunta dói.*
+> "Funcionam... até certo ponto. No raio da igreja, afasto os mais fracos. Mas a cinquenta metros do portão do cemitério, é como se a água sagrada evaporasse no ar. Nunca vi isso. Não tenho explicação teológica." *(fornece informação sobre a barreira da maldição)*
+>
+> **[A2] "Quando exatamente começou?"**
+> → "Na noite de três semanas atrás. O dia em que enterramos Harwick — o homem mais velho da aldeia. Tinha noventa e seis anos. Na noite seguinte ao enterro, os mortos levantaram pela primeira vez."
+> ✅ *PISTA de timing obtida — confirma o que Marta insinuou*
+
+**[B] "Como podemos ajudar?"**
+→ *Henwick fecha os olhos brevemente, aliviado por não precisar convencer.*
+> "Precisamos que alguém vá ao cemitério — de dia, com calma — e descubra o que está causando isso. Tentei ir. Cheguei até o portão. Ouvi algo debaixo da terra que me fez voltar correndo. Não me orgulho disso, mas é a verdade."
+
+Continua com:
+> **[B1] "O que você ouviu?"**
+> → *Ele olha para os lados antes de responder, baixando a voz.*
+> "Um som de alguém... contando. Em voz muito baixa. Números, ou palavras em sequência. Não era assustador de início. Foi quando percebi que o som vinha de dentro da terra que corri."
+>
+> **[B2] "Tem algo específico que devemos procurar lá?"**
+> → "Há uma oliveira velha no centro do cemitério — muito velha, anterior à aldeia. Os mais antigos diziam que ela estava lá antes de qualquer casa. Nunca dei atenção. Mas nas últimas semanas... ela está diferente. As folhas não caíram com o outono. No outono, Padre. Todas as outras árvores perderam as folhas. Ela não."
+> ✅ *PISTA da oliveira obtida — aponta para a entrada da câmara subterrânea*
+
+**[C] "Isto é trabalho de magia negra. Seu fracasso é esperado."**
+→ *Henwick engole o orgulho — não porque concorde, mas porque o momento não é de orgulho.*
+> "Talvez. Não sei. Mas meu fracasso ou não, as pessoas desta aldeia precisam de ajuda que eu não consigo dar. Podem ajudar ou não. Se não, peço que partam antes do anoitecer — não quero mais mortes."
+> *(Henwick não coopera com entusiasmo nesta linha, mas fornece abrigo na igreja de qualquer forma)*
+
+**Encerramento:**
+> "A igreja está aberta. É o único lugar onde estão seguros depois do sol. Voltem aqui antes de anoitecer — com ou sem respostas. Não quero procurá-los amanhã entre as lápides."
+
+---
+
 ## Rumores (se os heróis ficarem e ouvirem)
 
 *Se os heróis passarem tempo conversando com os aldeões:*

@@ -37,6 +37,34 @@ A porta da igreja é de carvalho maciço com ferragens de ferro. Fechada, resist
 
 **Nesta cena**: Tenta usar Channel Divinity para afastar mortos-vivos — funciona dentro de um raio de 10 metros da porta da igreja, mas perde eficácia conforme a distância aumenta. Se os heróis estiverem a mais de 15 metros, ele não consegue ajudá-los com a bênção. Pode usar sua ação para "segurar a tocha bem alto", concedendo vantagem em um ataque de um herói adjacente em um turno por rodada (representando iluminação melhor).
 
+## Diálogos
+
+> *Ocorre antes do combate, enquanto os heróis se posicionam com o Padre Henwick na soleira.*
+
+### Padre Henwick (enquanto esperam a noite cair)
+
+**Fala inicial:**
+> "Fiquem perto da luz. Os que ficam na sombra... eles vão para os mortos primeiro. Não sei por quê. Talvez seja instinto de ambos os lados."
+
+**Opções do herói:**
+
+**[A] "Quanto tempo você faz isso — ficar aqui toda noite?"**
+→ *Ele olha para a tocha na mão.*
+> "Três semanas. Primeira noite fiquei dentro. Ouvi os gritos de fora e não consegui. Na segunda, vim pra soleira. Fiquei aqui desde então."
+
+**[B] "Alguma coisa diferente nas noites anteriores que devemos saber?"**
+→ *Henwick pensa por um momento.*
+> "Na segunda semana, um deles parou na praça e ficou parado por quase uma hora, no mesmo lugar. Como se estivesse esperando. Depois voltou. Nunca entendi. Os outros se movem, circulam. Aquele ficou parado." *(informação tática — os mortos têm memória muscular de lugares específicos)*
+
+**[C] "Você deveria entrar. Deixa com a gente."**
+→ *Ele balança a cabeça.*
+> "Esta tocha não é pra mim. É pra quem está dentro. Se ela apagar, eles entram em pânico. Enquanto eu segurar, eles aguentam." *(Henwick não entra — fica como âncora moral dos aldeões)*
+
+**Encerramento** (quando os primeiros sons vêm do cemitério):
+> "Aqui vêm eles. Deus nos proteja — e vocês também, seja quem for que vocês acreditem que protege viajantes."
+
+---
+
 ## Rumores (se os heróis ficarem e ouvirem)
 
 *Esta é uma cena de combate — os "rumores" chegam na manhã seguinte, do Padre Henwick ou dos aldeões que ficaram acordados ouvindo:*

@@ -50,6 +50,73 @@ A câmara principal tem forma aproximadamente circular com paredes irregulares d
 
 **Se não for apaziguado**: O Ghost torna-se hostil — não por maldade, mas porque interpreta a recusa como nova rejeição. Ele foge para a Câmara do Coração (Cena 2.3) e lá se transforma em Wraith.
 
+## Diálogos
+
+> *O Ghost de Aldric não inicia conversa. Ele aparece e espera. Cabe aos heróis agir primeiro.*
+> *Este não é um diálogo de obtenção de informação — é um ritual de reconhecimento. A "vitória" não é extrair dados, é dizer a coisa certa.*
+
+### Ghost de Aldric
+
+**Fala inicial** (após um silêncio de 10-15 segundos, em voz baixa e ligeiramente fora de sincronia com os lábios):
+> "Vocês sabem o nome dele?"
+
+*(Ele fala de si mesmo na terceira pessoa — o distanciamento dos mortos que não se reconhecem mais como "eu". Espera.)*
+
+**Opções do herói:**
+
+**[A] "Aldric."**
+→ *O fantasma fecha os olhos. Quando os abre, há algo diferente — menos névoa, mais presença.*
+> "Faz muito tempo que ninguém disse." *— pausa —* "Vocês vieram da aldeia?"
+
+Continua com:
+> **[A1] "Sim. Eles estão com medo. Os mortos estão levantando."**
+> → *Aldric assente lentamente.*
+> "Eu sei. Não era para ser assim. Eu queria apenas... que alguém se lembrasse. O feitiço era para memória. Não para isto." *— sua voz fica mais baixa —* "Eu não sabia que a dor podia fazer isso."
+>
+> **[A2] "Sabemos o que aconteceu com você. A expulsão, o inverno."**
+> → *O fantasma vira levemente o rosto — algo entre surpresa e alívio.*
+> "Quem contou?" *— sem esperar resposta —* "Não importa. Que alguém saiba... já é mais do que eu esperava encontrar aqui." ✅ *ABERTURA — o Ghost está disposto ao ritual de apaziguamento*
+
+**[B] "Você é Aldric. O curandeiro que foi exilado."**
+→ *Uma pausa longa. Depois:*
+> "Fui exilado. Sim." *— olha para as próprias mãos translúcidas —* "Mas antes fui curandeiro. Às vezes esqueço nessa ordem."
+
+Continua com:
+> **[B1] "Encontramos seu diário. Lemos sua história."**
+> → *Algo no rosto do fantasma muda — não exatamente emoção, mas a memória de emoção.*
+> "O diário ainda estava lá." *— não é pergunta —* "Então vocês sabem da criança. Do inverno. De Harwick." *— pausa —* "Vocês vieram terminar isso?"
+> ✅ *ABERTURA — o Ghost está disposto ao ritual de apaziguamento*
+>
+> **[B2] "Encontramos o pergaminho com suas palavras."**
+> → *Aldric olha para as mãos do herói que segura o pergaminho.*
+> "Então está na hora. Digam as palavras aqui, neste lugar, com intenção. Não como fórmula — como verdade." ✅ *ATALHO — pula para o ritual diretamente*
+
+**[C] "Você precisa parar. Está machucando pessoas inocentes."**
+→ *Pausa mais longa que as outras. Quando fala, a voz é diferente — mais funda, com eco.*
+> "Inocentes." *— repete a palavra como se estivesse pesando —* "Eles enterraram um homem inocente no frio."
+
+*Se o herói responder com empatia após isso (Insight DC 10 para perceber a abertura):*
+> *O herói pode dizer algo como "Você tem razão. O que fizeram foi injusto." — e isso abre caminho para [A1] ou [B1].*
+
+*Se o herói insistir na abordagem acusatória:*
+> ❌ *O Ghost fecha-se. Sua luz violeta pulsa mais forte. Não ataca ainda, mas o próximo passo hostil transforma ele em combate.*
+
+**Ritual de Apaziguamento** (após qualquer abertura bem-sucedida):
+
+> *O herói deve:*
+> 1. Dizer o nome "Aldric" em voz alta *(já feito se escolheu [A] ou [B])*
+> 2. Ler ou parafrasear o pergaminho: "Você existia. Você serviu. Você foi esquecido. Nós lembramos."
+> 3. Deixar algo no lugar — qualquer objeto com intenção *(erva, moeda, objeto pessoal)*
+>
+> *Quando o terceiro passo é completado:*
+> Aldric inclina levemente a cabeça. Não sorri — fantasmas não sorriem — mas há nele algo que não estava antes: quietude.
+> > "Obrigado." *— a voz agora está completamente em sincronia —* "Cuide da oliveira. Arranca-a vai quebrar o feitiço. Deixa ela onde está — ela vai morrer sozinha agora." ✅ *SUCESSO — Ghost se dissolve*
+
+**Encerramento** (se o ritual falha e o Ghost foge):
+> *Aldric levanta as mãos — não em ameaça, em desespero — e some pela parede sul com um som de vento em fissura estreita. A câmara fica fria de repente.*
+
+---
+
 ## Rumores (se os heróis ficarem e ouvirem)
 
 *Não aplicável nesta cena — as informações chegam pelo próprio fantasma ou pelas evidências físicas.*
