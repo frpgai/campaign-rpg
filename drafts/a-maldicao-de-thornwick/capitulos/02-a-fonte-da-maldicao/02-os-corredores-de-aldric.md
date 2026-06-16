@@ -137,9 +137,9 @@ Continua com:
 
 > *[SRD 5.2.1 — CC-BY-4.0]*
 
-| Criatura | Quantidade | Modo | XP/PC | Dificuldade |
-|---|---|---|---|---|
-| Ghost (Aldric) | 1 | per_player | 1100 | high |
+| Criatura | Quantidade | Modo | XP/PC | Dificuldade | Tipo |
+|---|---|---|---|---|---|
+| Ghost (Aldric) | 1 | per_player | 1100 | — | narrative_only |
 
 > *Boss Ghost: HP: 45 × num_players | XP: 1100 × num_players. Este boss só aparece se os heróis falharem ou recusarem o ritual de apaziguamento. Comportamento: Aldric não ataca com raiva — ataca com desespero, tentando empurrar os heróis para fora da câmara, não destruí-los. Suas ações focam em Possession e Horrifying Visage. Se reduzido a 50% de HP, para e pergunta novamente: "Por que vocês não dizem o nome dele?" — ainda uma última chance para apaziguamento antes de fugir para 2.3.*
 >

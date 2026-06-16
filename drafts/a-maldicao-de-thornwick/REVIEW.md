@@ -149,8 +149,22 @@ Fórmula: `xp_threshold(N) = xp_threshold(N-1) + floor(300 * (N-1)^1.5)`
 | Segundo pergaminho (cópia) | Ossos de Aldric (Cena 2.2) | Alternativa ao pergaminho da casa |
 | Faca de prata | Baú do celeiro (Cena 1.3) | +1d4 dano vs mortos-vivos (opcional) |
 
+## Encontros Narrativos (fora do orçamento intencional)
+
+> ⚠️ Os encontros abaixo NÃO devem ser calculados como dificuldade normal pelo sistema. São intencionalmente desequilibrados — existem como punição narrativa para heróis que ignoraram todas as pistas de apaziguamento.
+
+| Cena | Criatura | CR | XP/PC | Orçamento High nível 1 | Classificação |
+|---|---|---|---|---|---|
+| 2.2 | Ghost (Aldric) | 4 | 1100 | 75 | `narrative_only` |
+| 2.3 | Wraith | 5 | 1800 | 75 | `narrative_only` |
+
+**Como persistir no banco:** ao fazer `POST /scene_creatures` para esses encontros, usar um campo que sinalize ao UI que são encontros narrativos — sugestão: `encounter_type: narrative_only` ou `is_narrative: true`. O UI não deve exibir dificuldade nem balanceamento para eles.
+
+**Resolução alternativa (sem combate):** Ghost apaziguado = XP de roleplay equivalente (1100 XP/PC). Wraith não aparece se Ghost foi apaziguado. O caminho pacífico é o caminho esperado para grupo nível 1.
+
 ## Pendente / Próximos Passos
 
 - [ ] Gravar no banco de dados (aguarda aprovação explícita do Mestre: "pode gravar no banco")
+- [ ] Definir campo `encounter_type` ou `is_narrative` na API de `scene_creatures` antes de persistir cenas 2.2 e 2.3
 - [ ] Gerar imagem de capa com prompt incluído em README.md e campaign.md
-- [ ] Revisar/atualizar pasta `introducao/` com novos dados finais (nome, visibilidade, etc.) — os arquivos existentes podem ter dados de rascunho desatualizados
+- [ ] Revisar/atualizar pasta `introducao/` com novos dados finais (nome, visibilidade, etc.)

@@ -62,9 +62,9 @@ Próximo à entrada da câmara, uma pedra de pressão no chão está levemente a
 
 > *[SRD 5.2.1 — CC-BY-4.0]*
 
-| Criatura | Quantidade | Modo | XP/PC | Dificuldade |
-|---|---|---|---|---|
-| Wraith (Aldric corrompido) | 1 | per_player | 1800 | high |
+| Criatura | Quantidade | Modo | XP/PC | Dificuldade | Tipo |
+|---|---|---|---|---|---|
+| Wraith (Aldric corrompido) | 1 | per_player | 1800 | — | narrative_only |
 
 > *Boss Wraith: HP: 67 × num_players | XP: 1800 × num_players. Esta criatura SÓ aparece se o Ghost de Aldric não foi apaziguado na Cena 2.2. Comportamento: o Wraith não fala, não hesita, não dá chances. A dor de Aldric sem a esperança de reconhecimento tornou-se raiva pura sem propósito. Ataca com Life Drain e pode criar Specter a partir de heróis mortos. Ponto de fraqueza: se qualquer herói pronunciar o nome "Aldric" durante o combate (sem teste de perícia — apenas ação de falar), o Wraith hesita por um turno (perda de ação), como se a palavra fosse um eco de algo que esqueceu ter querido. Isso não encerra o combate, mas dá abertura.*
 >
