@@ -447,19 +447,19 @@ Na parede leste, atrás de pedra removível (Investigation DC 15), há segundo p
     (v_scene1_id, v_poi_fogueira,      'Fogueira apagada na praça',  'ambience', NULL, NULL,
      'A lenha foi posicionada com cuidado — alguém tentou acender várias vezes. Marcas de fósforo por toda a madeira. O medo impediu que ficasse tempo suficiente para a chama pegar.',
      NULL, true, 1),
-    (v_scene1_id, v_poi_celeiro_porta, 'Porta do celeiro reforçada', 'object', 'Perception', 15,
+    (v_scene1_id, v_poi_celeiro_porta, 'Porta do celeiro reforçada', 'object', 'perception', 15,
      'Além das marcas de garras, no canto inferior direito à altura de uma criança, há marcas diferentes — dedos humanos que empurraram de dentro com força. Nem todos os mortos desta história vieram de fora.',
      'Você vê apenas a porta reforçada e as marcas óbvias de garras.', true, 2),
-    (v_scene1_id, v_poi_poco_central,  'Poço central com corda nova','object', 'Investigation', 12,
+    (v_scene1_id, v_poi_poco_central,  'Poço central com corda nova','object', 'investigation', 12,
      'A corda nova tem sangue seco nas fibras perto do nó. Alguém foi ferido enquanto buscava água — mas o ferimento não foi mencionado a ninguém.',
      'Você nota apenas que a corda é nova demais para o resto do poço, coberto de musgo velho.', true, 3);
 
   -- Cena 1.2
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, enabled, sort_order) VALUES
-    (v_scene2_id, v_poi_esqueleto, 'Esqueleto no canto da casa', 'object', 'Investigation', 12,
+    (v_scene2_id, v_poi_esqueleto, 'Esqueleto no canto da casa', 'object', 'investigation', 12,
      'Os ossos têm marcas de artrite severa nas mãos — trabalhador manual enterrado há décadas. Nada de especial: a maldição não escolhe os maus nem os bons, apenas os mortos.',
      'Você vê um esqueleto desarticulado no canto — provavelmente entrou aqui numa das noites passadas e foi destruído por alguém antes.', true, 1),
-    (v_scene2_id, v_poi_diario,   'Diário de Aldric (bancada)', 'object', 'Investigation', 10,
+    (v_scene2_id, v_poi_diario,   'Diário de Aldric (bancada)', 'object', 'investigation', 10,
      'O diário revela: nome completo de Aldric, história com a aldeia, injustiça do exílio, última entrada sobre ir ao cemitério "antes de partir". Entre as páginas, pergaminho com tradução parcial: "Eu existia. Eu servi. Eu fui esquecido. Que quem ler isto me lembre." Crucial na Cena 2.2.',
      'Você encontra o diário mas não consegue ler a letra cursiva e densa. Consegue apenas identificar que é diário pessoal com datas que cobrem décadas e o nome "Aldric" na primeira página.', true, 2),
     (v_scene2_id, v_poi_lareira,  'Ervas queimadas na lareira', 'ambience', NULL, NULL,
@@ -471,55 +471,55 @@ Na parede leste, atrás de pedra removível (Investigation DC 15), há segundo p
     (v_scene3_id, v_poi_fogueira,    'Fogueira apagada (noite)', 'ambience', NULL, NULL,
      'De noite, a fogueira apagada torna-se ponto de referência negativa. Os mortos-vivos a contornam ligeiramente, como se a lembrança do calor ainda existisse neles.',
      NULL, true, 1),
-    (v_scene3_id, v_poi_bau_trancado,'Baú trancado no celeiro', 'object', 'Investigation', 15,
+    (v_scene3_id, v_poi_bau_trancado,'Baú trancado no celeiro', 'object', 'investigation', 15,
      'O baú contém: farinha de trigo para duas semanas, um frasco de óleo de lanterna, e — no fundo embrulhado em pano — uma faca de prata sem cabo do ferreiro da aldeia. A faca causa +1d4 dano adicional em mortos-vivos.',
      'Você vê o baú mas não consegue abri-lo sem acordar os aldeões dentro do celeiro.', true, 2);
 
   -- Cena 2.1
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, enabled, sort_order) VALUES
-    (v_scene4_id, v_poi_esqueleto,        'Ossos no chão (seção norte)', 'object', 'Investigation', 10,
+    (v_scene4_id, v_poi_esqueleto,        'Ossos no chão (seção norte)', 'object', 'investigation', 10,
      'Fragmentos maiores têm marcas de impacto e marcas de recomposição parcial — o feitiço tentou reanimá-los mesmo após destruídos. Cada esqueleto destruído é um a menos para sempre.',
      'Você vê apenas ossos quebrados espalhados, alguns com armaduras velhas corroídas.', true, 1),
-    (v_scene4_id, v_poi_oliveira_runas,   'Altar com runas (tronco da oliveira)', 'object', 'Arcana', 12,
+    (v_scene4_id, v_poi_oliveira_runas,   'Altar com runas (tronco da oliveira)', 'object', 'arcana', 12,
      'Símbolos de vinculação e memória — não de destruição. Aldric criou feitiço de lembrança, não de ataque. A oliveira é âncora física da maldição — destruí-la não resolve nada, a fonte está embaixo.',
      'Você reconhece runas mágicas mas não consegue identificar escola ou propósito. Parecem antigas.', true, 2),
-    (v_scene4_id, v_poi_passagem_secreta, 'Passagem secreta entre as raízes', 'hidden_passage', 'Investigation', 20,
+    (v_scene4_id, v_poi_passagem_secreta, 'Passagem secreta entre as raízes', 'hidden_passage', 'investigation', 20,
      'Você encontra a tampa de pedra entre as raízes, perfeitamente encaixada. Marcas de mãos gravadas nos lados — esculpida de dentro para fora. Abre com Atletismo DC 12.',
      'Você não encontra nada incomum além do solo perturbado.', true, 3);
 
   -- Cena 2.2
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, enabled, sort_order) VALUES
-    (v_scene5_id, v_poi_estatua,       'Estátua de Aldric (mãos abertas)', 'object', 'History', 12,
+    (v_scene5_id, v_poi_estatua,       'Estátua de Aldric (mãos abertas)', 'object', 'history', 12,
      'Postura de mãos abertas, palmas para cima — gesto ritual de curandeiros: "ofereço o que tenho". Não é postura de poder. Quem reconhecer ganha vantagem no primeiro teste de interação com o Ghost.',
      'Você vê estatueta tosca de pedra. Parece uma pessoa com os braços estendidos.', true, 1),
     (v_scene5_id, v_poi_simbolo_arcano,'Símbolo arcano no chão', 'ambience', NULL, NULL,
      'O círculo gravado pulsa levemente com luz violeta se você olhar por mais de alguns segundos. É o feitiço respirando — não ameaçador, mais como batimento cardíaco.',
      NULL, true, 2),
-    (v_scene5_id, v_poi_esqueleto,     'Ossos de Aldric sobre a laje', 'object', 'Investigation', 10,
+    (v_scene5_id, v_poi_esqueleto,     'Ossos de Aldric sobre a laje', 'object', 'investigation', 10,
      'Entre os ossos, segundo pergaminho dobrado dentro do que foi a caixa torácica. Mesmas palavras do pergaminho da casa, mas escritas de forma mais urgente — letras pressionadas fundo. Parece ser o original. Tem o mesmo efeito no ritual.',
      'Você vê os ossos cuidadosamente dispostos mas não encontra nada além deles.', true, 3);
 
   -- Cena 2.3a (pacífico)
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, enabled, sort_order) VALUES
-    (v_scene6a_id, v_poi_altar_arcano,  'Altar arcano central', 'object', 'Arcana', 15,
+    (v_scene6a_id, v_poi_altar_arcano,  'Altar arcano central', 'object', 'arcana', 15,
      'Feitiço de conjuração de memória, escola rara. Para desfazê-lo: palavras de reconhecimento ditas em voz alta por alguém externo. Com proficiência em Arcana/Religion/Persuasion + pergaminho: sem teste. Sem pergaminho: DC 15. Uma rodada de ação. O altar dissolve-se suavemente.',
      'Você sente o poder no altar mas não consegue discernir como funciona.', true, 1),
-    (v_scene6a_id, v_poi_armadilha,     'Armadilha de pressão', 'trap', 'Investigation', 15,
+    (v_scene6a_id, v_poi_armadilha,     'Armadilha de pressão', 'trap', 'investigation', 15,
      'Você nota a pedra levemente afundada antes de pisá-la. Pode contorná-la ou desativá-la (Thieves'' Tools DC 12).',
      'O primeiro herói a passar a ativa. Todos a 3 metros: Con DC 12 ou cegos por 1 turno.', true, 2),
-    (v_scene6a_id, v_poi_fissura_fuga,  'Fissura de fuga (canto sudeste)', 'hidden_passage', 'Perception', 20,
+    (v_scene6a_id, v_poi_fissura_fuga,  'Fissura de fuga (canto sudeste)', 'hidden_passage', 'perception', 20,
      'Fissura larga o suficiente para uma pessoa passar de lado. Túnel sobe gradualmente — rota para a superfície, emergindo 50 metros do cemitério.',
      'Você não nota a fissura sem procurar ativamente. Procurando especificamente por saídas, DC cai para 10.', true, 3);
 
   -- Cena 2.3b (conflito)
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, enabled, sort_order) VALUES
-    (v_scene6b_id, v_poi_altar_arcano,  'Altar arcano central (ativo)', 'object', 'Arcana', 15,
+    (v_scene6b_id, v_poi_altar_arcano,  'Altar arcano central (ativo)', 'object', 'arcana', 15,
      'Mesmo mecanismo da versão pacífica, mas pulsando vermelho escuro. Ainda pode ser desfeito: palavras de reconhecimento, mesmo durante o combate com o Wraith (Concentração, Con DC 15 enquanto recebe dano, 1 rodada). Dissolve altar e Wraith simultaneamente.',
      'Você sente raiva cristalizada no altar — poder que não tem mais propósito além de durar.', true, 1),
-    (v_scene6b_id, v_poi_armadilha,     'Armadilha de pressão', 'trap', 'Investigation', 15,
+    (v_scene6b_id, v_poi_armadilha,     'Armadilha de pressão', 'trap', 'investigation', 15,
      'Você nota a pedra levemente afundada. Pode contorná-la ou desativá-la (Thieves'' Tools DC 12).',
      'O primeiro herói a passar a ativa. Todos a 3 metros: Con DC 12 ou cegos por 1 turno. Barulho pode alertar o Wraith se ainda não viu os heróis.', true, 2),
-    (v_scene6b_id, v_poi_fissura_fuga,  'Fissura de fuga (canto sudeste)', 'hidden_passage', 'Perception', 20,
+    (v_scene6b_id, v_poi_fissura_fuga,  'Fissura de fuga (canto sudeste)', 'hidden_passage', 'perception', 20,
      'Fissura larga o suficiente para uma pessoa passar de lado. Túnel sobe para a superfície. Rota de fuga viável se o grupo precisar recuar.',
      'Você não nota a fissura sem procurar ativamente. Procurando especificamente, DC cai para 10.', true, 3);
 
