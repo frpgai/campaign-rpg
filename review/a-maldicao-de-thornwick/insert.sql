@@ -114,14 +114,14 @@ DECLARE
   -- slugs conforme seed em 000004_create_pois.up.sql
   v_poi_fogueira         UUID; -- extinguished-campfire
   v_poi_celeiro_porta    UUID; -- back-door
-  v_poi_poco_central     UUID; -- village-well
+  v_poi_poco_central     UUID; -- stone-well
   v_poi_oliveira_runas   UUID; -- arcane-altar (oliveira é o suporte físico do altar arcano)
   v_poi_passagem_secreta UUID; -- false-wall (passagem esculpida de dentro = parede falsa)
   v_poi_fissura_fuga     UUID; -- wall-crack (fissura natural de saída)
   v_poi_altar_arcano     UUID; -- arcane-altar
   v_poi_armadilha        UUID; -- pressure-trap
   v_poi_esqueleto        UUID; -- bones-on-floor
-  v_poi_diario           UUID; -- old-journal
+  v_poi_diario           UUID; -- old-tome
   v_poi_lareira          UUID; -- fireplace
   v_poi_estatua          UUID; -- statue
   v_poi_simbolo_arcano   UUID; -- arcane-symbol
@@ -138,14 +138,14 @@ BEGIN
   -- Resolve poi ids do catálogo por slug exato (000004 seed)
   SELECT id INTO v_poi_fogueira         FROM pois WHERE slug = 'extinguished-campfire' LIMIT 1;
   SELECT id INTO v_poi_celeiro_porta    FROM pois WHERE slug = 'back-door'             LIMIT 1;
-  SELECT id INTO v_poi_poco_central     FROM pois WHERE slug = 'village-well'          LIMIT 1;
+  SELECT id INTO v_poi_poco_central     FROM pois WHERE slug = 'stone-well'            LIMIT 1;
   SELECT id INTO v_poi_oliveira_runas   FROM pois WHERE slug = 'arcane-altar'          LIMIT 1;
   SELECT id INTO v_poi_passagem_secreta FROM pois WHERE slug = 'false-wall'            LIMIT 1;
   SELECT id INTO v_poi_fissura_fuga     FROM pois WHERE slug = 'wall-crack'            LIMIT 1;
   SELECT id INTO v_poi_altar_arcano     FROM pois WHERE slug = 'arcane-altar'          LIMIT 1;
   SELECT id INTO v_poi_armadilha        FROM pois WHERE slug = 'pressure-trap'         LIMIT 1;
   SELECT id INTO v_poi_esqueleto        FROM pois WHERE slug = 'bones-on-floor'        LIMIT 1;
-  SELECT id INTO v_poi_diario           FROM pois WHERE slug = 'old-journal'           LIMIT 1;
+  SELECT id INTO v_poi_diario           FROM pois WHERE slug = 'old-tome'              LIMIT 1;
   SELECT id INTO v_poi_lareira          FROM pois WHERE slug = 'fireplace'             LIMIT 1;
   SELECT id INTO v_poi_estatua          FROM pois WHERE slug = 'statue'                LIMIT 1;
   SELECT id INTO v_poi_simbolo_arcano   FROM pois WHERE slug = 'arcane-symbol'         LIMIT 1;
