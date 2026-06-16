@@ -18,7 +18,12 @@ Se os heróis não desvendarem a origem da maldição e não encontrarem como di
 
 - [Campanha (dados técnicos)](campaign.md)
 - [História completa](story.md)
-- [Introdução e Lore](introducao/README.md)
+- **Introdução e Lore**
+  - [Sobre a Aventura](introducao/sobre.md)
+  - [Visão Geral](introducao/visao-geral.md)
+  - [Histórico](introducao/historico.md)
+  - [Narração de Abertura (Mestre)](introducao/narracao.md)
+  - [Guia de Interpretação](introducao/interpretacao.md)
 - **Capítulos**
   - [Capítulo 1 — As Noites que Devoram](capitulos/01-as-noites-que-devoram/index.md)
   - [Capítulo 2 — A Fonte da Maldição](capitulos/02-a-fonte-da-maldicao/index.md)
