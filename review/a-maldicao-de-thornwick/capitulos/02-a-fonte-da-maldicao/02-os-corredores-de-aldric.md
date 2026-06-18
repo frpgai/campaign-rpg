@@ -64,7 +64,7 @@ A câmara principal tem forma aproximadamente circular com paredes irregulares d
 
 **Opções do herói:**
 
-**[A] "Aldric."**
+**[A] "Aldric."** *(Requer item virtual: clue_name_aldric)*
 → *O fantasma fecha os olhos. Quando os abre, há algo diferente — menos névoa, mais presença.*
 > "Faz muito tempo que ninguém disse." *— pausa —* "Vocês vieram da aldeia?"
 
@@ -77,7 +77,7 @@ Continua com:
 > → *O fantasma vira levemente o rosto — algo entre surpresa e alívio.*
 > "Quem contou?" *— sem esperar resposta —* "Não importa. Que alguém saiba... já é mais do que eu esperava encontrar aqui." ✅ *ABERTURA — o Ghost está disposto ao ritual de apaziguamento*
 
-**[B] "Você é Aldric. O curandeiro que foi exilado."**
+**[B] "Você é Aldric. O curandeiro que foi exilado."** *(Requer item virtual: clue_name_aldric)*
 → *Uma pausa longa. Depois:*
 > "Fui exilado. Sim." *— olha para as próprias mãos translúcidas —* "Mas antes fui curandeiro. Às vezes esqueço nessa ordem."
 

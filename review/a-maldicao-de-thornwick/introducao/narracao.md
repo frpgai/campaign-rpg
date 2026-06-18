@@ -4,15 +4,29 @@
 
 ---
 
-Vocês são viajantes que cruzam os campos do interior, cada um por seus próprios motivos — talvez uma encomenda, talvez uma dívida, talvez simplesmente a estrada que segue em frente. O outono chegou cedo neste ano: as folhas estão caindo antes do tempo, e as noites ficaram frias de uma hora para outra, como se o mundo decidisse pular direto para o inverno.
+<!-- ambient: vento_frio_outono, volume: 0.4 -->
+<!-- voice: grave, velho, speed: 0.85 -->
+Vocês são viajantes que cruzam os campos do interior... cada um por seus próprios motivos…
+talvez uma encomenda... talvez uma dívida... talvez simplesmente a estrada que segue em frente. 
+O outono chegou cedo neste ano: 
+as folhas estão caindo antes do tempo... e as noites ficaram frias de uma hora para outra... como se o mundo decidisse pular direto para o inverno.
 
-A aldeia de Thornwick aparece no final de uma tarde cinzenta. Pequena, de pedra escura, com uma torre de igreja e campos de centeio que alguém colheu às pressas. À distância, parece normal. Mas conforme vocês se aproximam, algo pesa no ar — a ausência de fumaça saindo das chaminés, a ausência de crianças, a ausência de qualquer som que não seja o vento. Para quem viaja muito, ausência assim tem um nome: medo.
+<!-- ambient: vento_silencioso_tenso, volume: 0.3 -->
+A aldeia de Thornwick aparece no final de uma tarde cinzenta...
+Pequena... de pedra escura... com uma torre de igreja... e campos de centeio que alguém colheu às pressas. 
+À distância... parece normal. 
+Mas conforme vocês se aproximam... algo pesa no ar: 
+a ausência de fumaça saindo das chaminés... a ausência de crianças... a ausência de qualquer som que não seja o vento. 
+Para quem viaja muito... ausência assim tem um nome...
+<!-- sfx: batida_coracao_abafada, delay: 1s -->
+medo.
 
-Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com mão trêmula:
+<!-- voice: tremula, velho, speed: 0.8 -->
+Na entrada da aldeia há um aviso pregado numa tábua de carvalho... escrito com mão trêmula:
 
-*"PROIBIDA A SAÍDA APÓS O POR DO SOL. POR ORDEM DO CONSELHO DE THORNWICK."*
+*"PROIBIDA A SAÍDA APÓS O POR DO SOL... POR ORDEM DO CONSELHO DE THORNWICK."*
 
-Não há data. Não há assinatura. E não há ninguém para explicar.
+Não há data... Não há assinatura... E não há ninguém para explicar.
 
 ---
 

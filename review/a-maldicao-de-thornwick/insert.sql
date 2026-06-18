@@ -103,6 +103,8 @@ DECLARE
   v_opt_a2_ritual    UUID;   -- opção "prosseguir" em v_ald_a2          → v_ald_ritual → (depois: cena 6a)
   v_opt_b1_ritual    UUID;   -- opção "prosseguir" em v_ald_b1          → v_ald_ritual → (depois: cena 6a)
   v_opt_hostil       UUID;   -- opção "Isso não justifica" em v_ald_c   → v_ald_flee  → cena 6b
+  v_opt_ald_root_a   UUID;   -- opção "Aldric" em v_ald_root → v_ald_a
+  v_opt_ald_root_b   UUID;   -- opção "Você é Aldric..." em v_ald_root → v_ald_b
 
   -- creature ids (null se não existir na tabela creatures)
   v_cr_skeleton UUID;
@@ -179,9 +181,9 @@ Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com m
   -- ==========================================================
   -- CAMPAIGN NPCs
   -- ==========================================================
-  INSERT INTO campaign_npcs (campaign_id, slug, name, appearance, personality_ideal, personality_bond, personality_flaw, what_they_know, how_they_act, enabled)
+  INSERT INTO campaign_npcs (campaign_id, slug, name, unknown_name, appearance, personality_ideal, personality_bond, personality_flaw, what_they_know, how_they_act, enabled)
   VALUES (
-    v_campaign_id, 'marta', 'Marta',
+    v_campaign_id, 'marta', 'Marta', 'Anciã sentada no banco',
     'Noventa e poucos anos, pele de pergaminho enrugado, cabelo branco preso num coque apertado com um alfinete de osso. Senta-se com a coluna mais reta que qualquer outro aldeão. Olhos castanhos e claros — enxergam mais do que deveriam.',
     'Os mortos têm direito à memória. Esquecer é uma forma de mentir.',
     'Ela estava presente no exílio de Aldric. Tinha oito anos e não disse nada. Carrega isso há décadas.',
@@ -191,15 +193,15 @@ Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com m
     true
   )
   ON CONFLICT (campaign_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, appearance = EXCLUDED.appearance,
+    name = EXCLUDED.name, unknown_name = EXCLUDED.unknown_name, appearance = EXCLUDED.appearance,
     personality_ideal = EXCLUDED.personality_ideal, personality_bond = EXCLUDED.personality_bond,
     personality_flaw = EXCLUDED.personality_flaw, what_they_know = EXCLUDED.what_they_know,
     how_they_act = EXCLUDED.how_they_act, enabled = EXCLUDED.enabled, updated_at = now()
   RETURNING id INTO v_npc_marta_id;
 
-  INSERT INTO campaign_npcs (campaign_id, slug, name, appearance, personality_ideal, personality_bond, personality_flaw, what_they_know, how_they_act, enabled)
+  INSERT INTO campaign_npcs (campaign_id, slug, name, unknown_name, appearance, personality_ideal, personality_bond, personality_flaw, what_they_know, how_they_act, enabled)
   VALUES (
-    v_campaign_id, 'padre-henwick', 'Padre Henwick',
+    v_campaign_id, 'padre-henwick', 'Padre Henwick', 'Padre de hábito surrado',
     'Cinquenta e tantos anos, barba mal-aparada, olhos vermelhos de noites sem dormir. Veste o hábito pardo da Igreja local sobre uma camisa de lã. Carrega um rosário que repete entre os dedos constantemente.',
     'A fé é o que separa a civilização do caos — mas minha fé está sendo testada.',
     'A igreja é tudo que ele tem. Se a aldeia cair, a igreja cai com ela — e ele não sabe existir fora dela.',
@@ -209,15 +211,15 @@ Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com m
     true
   )
   ON CONFLICT (campaign_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, appearance = EXCLUDED.appearance,
+    name = EXCLUDED.name, unknown_name = EXCLUDED.unknown_name, appearance = EXCLUDED.appearance,
     personality_ideal = EXCLUDED.personality_ideal, personality_bond = EXCLUDED.personality_bond,
     personality_flaw = EXCLUDED.personality_flaw, what_they_know = EXCLUDED.what_they_know,
     how_they_act = EXCLUDED.how_they_act, enabled = EXCLUDED.enabled, updated_at = now()
   RETURNING id INTO v_npc_henwick_id;
 
-  INSERT INTO campaign_npcs (campaign_id, slug, name, appearance, personality_ideal, personality_bond, personality_flaw, what_they_know, how_they_act, enabled)
+  INSERT INTO campaign_npcs (campaign_id, slug, name, unknown_name, appearance, personality_ideal, personality_bond, personality_flaw, what_they_know, how_they_act, enabled)
   VALUES (
-    v_campaign_id, 'aldric', 'Aldric',
+    v_campaign_id, 'aldric', 'Aldric', 'Figura translúcida',
     'Translúcido, com leve brilho violeta. Aparenta 50 e poucos anos, com mãos que em vida foram grandes e calosas. Veste roupas simples de curandeiro — avental de couro sobre linho, bolsas de ervas no cinto que não existem mais. Rosto de alguém em paz que não sabe ainda que está em paz.',
     'Eu servi bem. Não peço perdão — peço apenas que se lembrem de que eu existia.',
     'Thornwick era seu lar. Não odeia a aldeia — sente falta dela. A maldição não foi ato de ódio; foi o grito de alguém que não queria ser esquecido.',
@@ -227,7 +229,7 @@ Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com m
     true
   )
   ON CONFLICT (campaign_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, appearance = EXCLUDED.appearance,
+    name = EXCLUDED.name, unknown_name = EXCLUDED.unknown_name, appearance = EXCLUDED.appearance,
     personality_ideal = EXCLUDED.personality_ideal, personality_bond = EXCLUDED.personality_bond,
     personality_flaw = EXCLUDED.personality_flaw, what_they_know = EXCLUDED.what_they_know,
     how_they_act = EXCLUDED.how_they_act, enabled = EXCLUDED.enabled, updated_at = now()
@@ -274,7 +276,7 @@ Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com m
   VALUES (
     v_adv1_id, '01-a-vila-que-respira-com-medo',
     'A Vila que Respira com Medo',
-    'Os heróis chegam a Thornwick — silêncio anormal, portas pregadas, fogueira apagada. Marta senta no banco de pedra como imune ao medo. Padre Henwick aparece na porta da igreja em súplica. Mortos levantam toda noite há três semanas; a resposta está na colina ao norte.',
+    'A estrada que desce para Thornwick parece normal à distância — casas de pedra cinzenta, uma torre de igreja, campos de centeio dos dois lados. Mas conforme vocês se aproximam, o silêncio fica pesado demais para ser coincidência. Não há crianças. Os cães não latem. Todas as janelas estão fechadas com tábuas, e a única fogueira da praça central está apagada, com as brasas frias de horas atrás. Uma mulher velha sentada num banco de pedra olha para vocês sem surpresa, como se estivesse esperando. Do lado oposto da praça, um padre de hábito surrado se aproxima de mãos postas — não em oração, mas em súplica.',
     'Top-down grid map of a small medieval village square, approximately 30x30 meters. Central feature: an old stone well with a dead torch on a post beside it. Surrounding buildings: a stone church with a reinforced wooden door to the north, a barn with a heavy beam across its door to the east, a row of 3-4 attached stone houses with boarded windows to the south and west. A stone bench near the well where an elderly woman sits. Cobblestone plaza, moss between the stones, a dead fire pit near the well. Overcast sky atmosphere. Style: top-down D&D 5e grid map, hand-drawn aesthetic, muted earth tones with grey stone.',
     'O velho Harwick disse, antes de morrer, que tinha uma coisa na garganta que precisava dizer. Mas morreu antes de dizer. Minha mãe estava lá e ficou acordada três noites com isso na cabeça.
 
@@ -282,7 +284,9 @@ Tem uma casa velha na beira da estrada que sobe pro cemitério. Ninguém entra l
 
 O padre diz que as bênçãos funcionam em tudo menos no cemitério. Mas eu vi ele tentando benzer a porta e a água sagrada secou antes de chegar no portão. Secou. No ar.',
     'Após conversar com Marta e/ou Henwick, os heróis sabem da casa abandonada perto do cemitério. Enquanto o sol ainda está alto, é o melhor momento para ir.',
-    'Marta é a chave emocional. Se tratada com desrespeito, fecha-se — Henwick pode mencionar a casa como alternativa. A cena não pode ser bloqueada: os heróis precisam de alguma forma saber da casa.',
+    'Resumo: Os heróis chegam a Thornwick — silêncio anormal, portas pregadas, fogueira apagada. Marta senta no banco de pedra como imune ao medo. Padre Henwick aparece na porta da igreja em súplica. Mortos levantam toda noite há três semanas; a resposta está na colina ao norte.
+
+Diretrizes de Condução: Marta é a chave emocional. Se tratada com desrespeito, fecha-se — Henwick pode mencionar a casa como alternativa. A cena não pode ser bloqueada: os heróis precisam de alguma forma saber da casa.',
     1
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
@@ -295,10 +299,12 @@ O padre diz que as bênçãos funcionam em tudo menos no cemitério. Mas eu vi e
   VALUES (
     v_adv1_id, '02-o-que-os-mortos-deixaram',
     'O Que os Mortos Deixaram',
-    'A casa de Aldric fica a 300 metros da praça. Cena investigativa — sem combate. O diário revela quem era Aldric: não antagonista, mas vítima de injustiça. O pergaminho encontrado aqui é o objeto-chave do Capítulo 2.',
-    'Top-down grid map of a small stone healer''s cottage interior, approximately 10x8 meters. Main room: a wooden workbench running along the east wall, covered in dried herbs hanging from the ceiling above it. A small fireplace on the north wall with cold ashes. A narrow bed in the northwest corner with a folded blanket. A wooden chair and small table in the center. A locked wooden chest beneath the workbench. One window (boarded from outside, thin slats of light entering). A door to the south (entrance). Style: top-down D&D 5e hand-drawn grid map, muted earthy tones, detailed interior.',
+    'A porta cede com um empurrão suave — o trinco de madeira apodreceu há anos. O cheiro que entra primeiro é de ervas secas e terra úmida, dois aromas que, separados, seriam comuns, mas juntos formam algo medicinal e ligeiramente amargo. A luz do fim de tarde corta a poeira em suspensão como listras douradas. Vocês veem uma bancada de trabalho com feixes de plantas pendurados pelo teto — algumas ainda reconhecíveis, outras reduzidas a farelo escuro. No canto, uma cama estreita com cobertor dobrado, como se alguém esperasse voltar. E sobre a bancada, coberto por uma camada de pó do tamanho de um dedo, um livro encadernado em couro com o nome "A." gravado na capa.',
+    'Top-down grid map of a small healer''s cottage interior, approximately 10x8 meters. Main room: a wooden workbench running along the east wall, covered in dried herbs hanging from the ceiling above it. A small fireplace on the north wall with cold ashes. A narrow bed in the northwest corner with a folded blanket. A wooden chair and small table in the center. A locked wooden chest beneath the workbench. One window (boarded from outside, thin slats of light entering). A door to the south (entrance). Style: top-down D&D 5e hand-drawn grid map, muted earthy tones, detailed interior.',
     'Com o diário (e idealmente o pergaminho), os heróis têm o contexto para o que vem. O sol começa a cair. Voltar para a aldeia agora leva à Cena 1.3.',
-    'O pergaminho no diário é o objeto-chave do Cap. 2. Investigation DC 10 (deliberadamente baixo). Se não encontrarem aqui, pode aparecer gravado na parede da cripta na Cena 2.2. Quanto mais humano Aldric parecer antes do encontro, mais impactante será aquela cena.',
+    'Resumo: A casa de Aldric fica a 300 metros da praça. Cena investigativa — sem combate. O diário revela quem era Aldric: não antagonista, mas vítima de injustiça. O pergaminho encontrado aqui é o objeto-chave do Capítulo 2.
+
+Diretrizes de Condução: O pergaminho no diário é o objeto-chave do Cap. 2. Investigation DC 10 (deliberadamente baixo). Se não encontrarem aqui, pode aparecer gravado na parede da cripta na Cena 2.2. Quanto mais humano Aldric parecer antes do encontro, mais impactante será aquela cena.',
     2
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
@@ -311,10 +317,12 @@ O padre diz que as bênçãos funcionam em tudo menos no cemitério. Mas eu vi e
   VALUES (
     v_adv1_id, '03-a-primeira-noite',
     'A Primeira Noite',
-    'O sol se foi. Os mortos descem do cemitério pela praça central. Padre Henwick está na porta da igreja com uma tocha — âncora moral dos aldeões. Os heróis decidem onde ficam quando a noite começa.',
+    'O último sino da igreja bate sete vezes e depois para — como se o padre tivesse largado a corda do meio. Do norte, do alto da colina, vem um som que vocês não conseguem nomear na primeira vez que ouvem: um ranger úmido, lento, como de dobradiças enferrujadas abrindo debaixo da terra. Depois de um momento, vocês identificam: é solo. Terra pressionada de baixo para cima. As tochas ao longo da praça tremem num vento que não existe. E no portão da igreja, o Padre Henwick levanta sua tocha com a mão errada — a mão que não treme — e diz, em voz muito baixa: "Aqui vêm eles."',
     'Top-down grid map of a small medieval village square at night, 30x30 meters. Same layout as Scene 1.1 but in nighttime lighting: deep shadows, a single torch by the church door casting warm orange light in a small radius. Undead approach from the north road. The barn door is reinforced. Style: top-down D&D 5e night encounter map, heavy use of shadows, torch-lit areas in warm amber, dark blues and greys for shadow zones.',
     'Na manhã seguinte, um jovem aldeão diz em voz baixa: "Eu vi. O chão do cemitério se mexeu de dia hoje." Este é o fio que leva ao Capítulo 2.',
-    'Esta cena não precisa ser difícil — precisa ser atmosférica. Os mortos são lentos e sem coordenação. Se os heróis tentarem comunicar-se, podem notar (Insight DC 14) que repetem o mesmo gesto — mãos abertas, como quem pede ou oferece algo.',
+    'Resumo: O sol se foi. Os mortos descem do cemitério pela praça central. Padre Henwick está na porta da igreja com uma tocha — âncora moral dos aldeões. Os heróis decidem onde ficam quando a noite começa.
+
+Diretrizes de Condução: Esta cena não precisa ser difícil — precisa ser atmosférica. Os mortos são lentos e sem coordenação. Se os heróis tentarem comunicar-se, podem notar (Insight DC 14) que repetem o mesmo gesto — mãos abertas, como quem pede ou oferece algo.',
     3
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
@@ -330,7 +338,7 @@ O padre diz que as bênçãos funcionam em tudo menos no cemitério. Mas eu vi e
   VALUES (
     v_adv2_id, '01-o-cemiterio-que-respira',
     'O Cemitério que Respira',
-    'O portão de ferro cede com um toque. Lápides antigas cobertas de líquen preto, oliveira enorme com seiva negra. Ao norte do tronco, entre as raízes, escada de pedra desce para a cripta de Aldric. Padre Henwick ficou no portão externo.',
+    'O portão de ferro cede com um toque. O cemitério de Thornwick é menor do que parece de longe — talvez dois campos de futebol de lápides dispostas sem ordem perfeita, separadas por caminhos de pedra irregular cobertos de musgo. A oliveira ao centro é enorme, mais velha do que qualquer pessoa viva na aldeia, e dela vem um cheiro que não é exatamente podridão — é mais como terra molhada com algo mineral por baixo. A seiva negra que escorre da casca não parece natural. E ao redor das raízes mais grossas, ao norte, o solo está irregular como se tivesse sido empurrado de baixo para cima várias vezes. Há calor vindo do chão. Não o calor do sol — o sol desta manhã está nublado. O calor vem de dentro.',
     'Top-down grid map of a small rural cemetery, approximately 40x40 meters. Iron gate entrance to the south. Grave markers of various sizes throughout, older and more eroded toward the north section. A massive ancient olive tree at the center-north, its roots spreading visibly above ground. A section of disturbed earth near the olive tree''s north roots indicating a hidden passage. Stone pathways between grave sections, covered in moss. The northern graves show signs of being pushed upward (uneven earth). A low stone wall surrounds the perimeter. Style: top-down D&D 5e grid map, atmospheric, slightly unsettling, muted greens and grey stones with a dark central focus on the olive tree.',
     'Os ossos espalhados no chão da seção norte são restos de mortos-vivos destruídos em noites anteriores, arrastados de volta pelo feitiço ao amanhecer.
 
@@ -338,7 +346,9 @@ A seiva negra da oliveira tem sabor de sal e cinza — como lágrimas velhas. Me
 
 Ao pressionar a orelha contra uma lápide antiga em silêncio absoluto, Perception DC 15: palavras em tom muito baixo vindas de baixo da terra. A única palavra distinguível é "Aldric".',
     'A passagem secreta aberta entre as raízes desce para corredor de pedra. A luz que vem de baixo é ligeiramente violeta. Descendo, os heróis entram na Cena 2.2.',
-    'Dois ritmos possíveis: combat-first ou exploration-first. O Mestre pode dar pistas visuais sem exigir teste: "as raízes ao norte formam quase um arco sobre o chão". Destruir a oliveira não é possível com ferramentas comuns — ela resiste a dano não-mágico.',
+    'Resumo: O portão de ferro cede com um toque. Lápides antigas cobertas de líquen preto, oliveira enorme com seiva negra. Ao norte do tronco, entre as raízes, escada de pedra desce para a cripta de Aldric. Padre Henwick ficou no portão externo.
+
+Diretrizes de Condução: Dois ritmos possíveis: combat-first ou exploration-first. O Mestre pode dar pistas visuais sem exigir teste: "as raízes ao norte formam quase um arco sobre o chão". Destruir a oliveira não é possível com ferramentas comuns — ela resiste a dano não-mágico.',
     1
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
@@ -351,7 +361,7 @@ Ao pressionar a orelha contra uma lápide antiga em silêncio absoluto, Percepti
   VALUES (
     v_adv2_id, '02-os-corredores-de-aldric',
     'Os Corredores de Aldric',
-    'Corredor estreito desce 11 degraus até câmara circular — memorial, não lugar de ódio. Ossos dispostos em paz, ervas nas paredes, estatueta de mãos abertas. O fantasma de Aldric emerge quando sente intenção de entender. O caminho tomado aqui determina qual versão da Cena 2.3 os heróis encontrarão.',
+    'O corredor termina e abre para uma câmara circular de teto baixo, iluminada pelas mesmas tochas de osso e cera que acenderam sozinhas lá atrás. No centro, sobre a laje de pedra, há um conjunto de ossos humanos dispostos com cuidado — não espalhados, não reanimados, mas organizados, como se alguém os tivesse deitado ali em paz. Nas paredes, ervas prensadas entre as pedras ainda têm cor, décadas depois. E no canto norte, onde a sombra é mais funda, há uma figura que não estava lá um segundo atrás: um homem de mãos abertas, translúcido, vestindo roupas de curandeiro que existiram há muito tempo. Ele não ataca. Ele olha. Seu rosto é o de alguém que esperou por isso por muito mais tempo do que esperava ter que esperar.',
     'Top-down grid map of an underground stone chamber, approximately 12x10 meters. A narrow corridor entrance from the south (2 meters wide). The chamber is roughly circular with irregular stone walls. A central stone slab with human remains carefully arranged. Wall niches containing pressed herbs and small clay offerings. A carved stone figure of a robed man with open hands on the north wall. Sparse torch sconces on walls with strange pale torches (bone and beeswax). Subtle magical circle engraved in the floor around the slab. Style: top-down D&D 5e dungeon map, atmospheric, low candlelight effect, warm amber mixed with violet shadows.',
     'Os ossos sobre a laje não estão completos: faltam os ossos das mãos — presos entre as pedras das paredes.
 
@@ -359,7 +369,9 @@ O símbolo arcano no chão é um "círculo de eco" — feitiço de baixa potênc
 
 Na parede leste, atrás de pedra removível (Investigation DC 15), há segundo pergaminho em latim arcaico — fórmula de dissolução do círculo de eco. Equivalente ao pergaminho da casa.',
     'Se ritual completado: Ghost dissolve-se em luz violeta. Os heróis vão à Cena 2.3a (pacífica). Se não apaziguado: Ghost some em direção à câmara mais funda — os heróis encontram a Cena 2.3b (Wraith ativo). A transição de cena é determinada pela opção de diálogo escolhida, não por texto descritivo.',
-    'Esta é a cena mais importante. O Mestre deve deixar os heróis liderar o ritual. O Ghost responde à intenção, não à mecânica perfeita. Se um herói tiver histórico de injustiça, este é o momento para tomar a frente organicamente.',
+    'Resumo: Corredor estreito desce 11 degraus até câmara circular — memorial, não lugar de ódio. Ossos dispostos em paz, ervas nas paredes, estatueta de mãos abertas. O fantasma de Aldric emerge quando sente intenção de entender. O caminho tomado aqui determina qual versão da Cena 2.3 os heróis encontrarão.
+
+Diretrizes de Condução: Esta é a cena mais importante. O Mestre deve deixar os heróis liderar o ritual. O Ghost responde à intenção, não à mecânica perfeita. Se um herói tiver histórico de injustiça, este é o momento para tomar a frente organicamente.',
     2
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
@@ -373,10 +385,12 @@ Na parede leste, atrás de pedra removível (Investigation DC 15), há segundo p
   VALUES (
     v_adv2_id, '03a-o-coracao-da-maldicao-pacifico',
     'O Coração da Maldição (Pacífico)',
-    'Câmara natural de calcário além de fissura na parede norte. Altar circular de pedra negra ao centro — o mecanismo da maldição. O altar pulsa com luz violeta fraca, como chama morrendo por falta de razão para continuar. A câmara está silenciosa. O ritual é um ato de cuidado: desfazer algo que não deveria existir, com respeito.',
+    'A fissura na parede norte leva a uma câmara diferente — maior, mais fria, com teto pontiagudo de calcário branco que reflete a luz em fragmentos irregulares. O som da água gotejando nas paredes é o único som. No centro, um altar circular de pedra negra pulsa com uma luz violeta que, conforme vocês se aproximam, vai ficando mais fraca — como uma chama morrendo, não de falta de ar, mas de falta de razão para continuar. O altar espera.',
     'Top-down grid map of a natural limestone cavern, approximately 15x12 meters. Irregular walls with water dripping marks. A perfectly flat floor. At the center: a circular black stone altar, approximately 2 meters diameter, with an arcane circle glowing faint violet — dimming. Thin arcane lines run from altar to walls. A narrow crack in the north wall. A pressure plate trap near the entrance (Investigation DC 15). A crack in the southeast wall (escape route, Perception DC 20). Style: top-down D&D 5e dungeon map, natural cave, atmospheric, violet fading light.',
     'Com o altar dissolvido, os heróis emergem no cemitério ao amanhecer. Thornwick começa a abrir as primeiras janelas. Alguém acende uma fogueira na praça central. Desta vez, ela pega. FIM DA CAMPANHA.',
-    'Esta cena deve ser sentida como alívio silencioso. Pergunte ao grupo: "O que seu personagem sente ao sair do cemitério?" Esta campanha não tem tesouro dramático — tem uma aldeia que pode dormir de novo, e a memória de um homem que finalmente foi lembrado.',
+    'Resumo: Câmara natural de calcário além de fissura na parede norte. Altar circular de pedra negra ao centro — o mecanismo da maldição. O altar pulsa com luz violeta fraca, como chama morrendo por falta de razão para continuar. A câmara está silenciosa. O ritual é um ato de cuidado: desfazer algo que não deveria existir, com respeito.
+
+Diretrizes de Condução: Esta cena deve ser sentida como alívio silencioso. Pergunte ao grupo: "O que seu personagem sente ao sair do cemitério?" Esta campanha não tem tesouro dramático — tem uma aldeia que pode dormir de novo, e a memória de um homem que finalmente foi lembrado.',
     3
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
@@ -390,10 +404,12 @@ Na parede leste, atrás de pedra removível (Investigation DC 15), há segundo p
   VALUES (
     v_adv2_id, '03b-o-coracao-da-maldicao-conflito',
     'O Coração da Maldição (Conflito)',
-    'Câmara natural de calcário. A fissura na parede norte está rasgada — bordas de pedra forçadas de dentro para fora. A câmara é fria como poço no inverno. A luz violeta do altar agora é vermelha escura, cor de sangue coagulado. Do centro, a figura que foi Aldric olha para os heróis — mas não há mais reconhecimento nos olhos. Apenas raiva que não encontrou saída por tempo demais.',
+    'A fissura na parede norte não está simplesmente aberta — está rasgada, as bordas de pedra forçadas de dentro para fora. A câmara além é fria como poço no inverno, e a luz violeta que pulsava no altar agora é vermelha escura, cor de sangue coagulado. Do centro da câmara, a figura que foi Aldric olha para vocês — mas não há mais reconhecimento nos olhos. Não há mais dor. Há apenas raiva que não encontrou saída por tempo demais e agora é tudo que resta.',
     'Top-down grid map of a natural limestone cavern, approximately 15x12 meters. Irregular walls with water dripping marks. A perfectly flat floor. At the center: a circular black stone altar with an arcane circle glowing dark red. The crack in the north wall is forced open wider than before. A pressure plate trap near the entrance (Investigation DC 15). A crack in the southeast wall (escape route, Perception DC 20). Style: top-down D&D 5e dungeon map, natural cave, ominous dark red light at center, cold atmosphere.',
     'O Wraith se dissolve em silêncio absoluto — sem grito final, sem luz dramática. Apenas some. O altar ainda precisa ser desfeito (ritual ainda necessário após o combate). A sensação é de vitória incompleta: os heróis venceram, mas o que venceram era trágico, não vil. FIM DA CAMPANHA.',
-    'Mesmo na luta contra o Wraith, um herói pode tentar o ritual no altar durante o combate — exige Concentração (Con DC 15 enquanto recebe dano) e uma rodada completa de ação. Se bem-sucedido, dissolve o altar e o Wraith simultaneamente. Pronunciar "Aldric" durante o combate faz o Wraith hesitar 1 turno (perda de ação).',
+    'Resumo: Câmara natural de calcário. A fissura na parede norte está rasgada — bordas de pedra forçadas de dentro para fora. A câmara é fria como poço no inverno. A luz violeta do altar agora é vermelha escura, cor de sangue coagulado. Do centro, a figura que foi Aldric olha para os heróis — mas não há mais reconhecimento nos olhos. Apenas raiva que não encontrou saída por tempo demais.
+
+Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem grito final, sem luz dramática. Apenas some. O altar ainda precisa ser desfeito (ritual ainda necessário após o combate). A sensação é de vitória incompleta: os heróis venceram, mas o que venceram era trágico, não vil. Mesmo na luta contra o Wraith, um herói pode tentar o ritual no altar durante o combate — exige Concentração (Con DC 15 enquanto recebe dano) e uma rodada completa de ação. Se bem-sucedido, dissolve o altar e o Wraith simultaneamente. Pronunciar "Aldric" durante o combate faz o Wraith hesitar 1 turno (perda de ação).',
     4
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
@@ -788,10 +804,16 @@ Na parede leste, atrás de pedra removível (Investigation DC 15), há segundo p
     v_ald_b, v_ald_b1, v_ald_b2_rit, v_ald_c, v_ald_ritual
   );
 
-  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, sort_order) VALUES
-    (v_ald_root, '"Aldric."',                                      v_ald_a,    1),
-    (v_ald_root, '"Você é Aldric. O curandeiro que foi exilado."', v_ald_b,    2),
-    (v_ald_root, '"Você precisa parar. Está machucando inocentes."', v_ald_c,  3);
+  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, sort_order)
+  VALUES (v_ald_root, '"Aldric."', v_ald_a, 1)
+  RETURNING id INTO v_opt_ald_root_a;
+
+  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, sort_order)
+  VALUES (v_ald_root, '"Você é Aldric. O curandeiro que foi exilado."', v_ald_b, 2)
+  RETURNING id INTO v_opt_ald_root_b;
+
+  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, sort_order)
+  VALUES (v_ald_root, '"Você precisa parar. Está machucando inocentes."', v_ald_c, 3);
 
   INSERT INTO npc_dialogue_options (node_id, label, next_node_id, sort_order) VALUES
     (v_ald_a, '"Sim. Eles estão com medo. Os mortos estão levantando."',     v_ald_a1, 1),
@@ -838,16 +860,15 @@ Na parede leste, atrás de pedra removível (Investigation DC 15), há segundo p
   -- pergaminho no inventário. O sistema avalia esta condição
   -- no runtime — a campanha apenas declara o requisito.
   -- (Condição ativada quando spec/00160-inventario estiver
-  --  implementado e o item pergaminho-de-aldric existir.)
+  --  implementado e o item aldric_scroll existir.)
   -- ==========================================================
-  DELETE FROM npc_dialogue_conditions WHERE option_id = v_opt_ritual_done;
+  DELETE FROM npc_dialogue_conditions WHERE option_id IN (v_opt_ritual_done, v_opt_ald_root_a, v_opt_ald_root_b);
 
   INSERT INTO npc_dialogue_conditions (option_id, condition_type, condition_value)
-  VALUES (
-    v_opt_ritual_done,
-    'has_item',
-    '{"item_slug": "pergaminho-de-aldric", "quantity": 1}'::jsonb
-  );
+  VALUES 
+    (v_opt_ritual_done, 'has_item', '{"item_slug": "aldric_scroll", "quantity": 1}'::jsonb),
+    (v_opt_ald_root_a, 'has_item', '{"item_slug": "clue_name_aldric", "quantity": 1}'::jsonb),
+    (v_opt_ald_root_b, 'has_item', '{"item_slug": "clue_name_aldric", "quantity": 1}'::jsonb);
 
   -- ==========================================================
   -- SCENE UNLOCKS — dialogue_option

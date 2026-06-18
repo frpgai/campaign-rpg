@@ -6,8 +6,8 @@ Os heróis entram nessa história como forasteiros sem comprometimento com a cul
 
 ## Estrutura da Aventura
 
-- **Capítulo 1 — [A ser nomeado na Fase 3] (Nível 1):** Os heróis chegam a Thornwick, avaliam a situação, coletam relatos e sobrevivem à primeira noite no cemitério enquanto descobrem a origem da maldição.
-- **Capítulo 2 — [A ser nomeado na Fase 3] (Nível 1–2):** Com a origem conhecida, os heróis precisam confrontar o núcleo da maldição — a oliveira sobre o túmulo do fundador — e decidir como romper o ciclo.
+- **Capítulo 1 — As Noites que Devoram (Nível 1):** Os heróis chegam a Thornwick, avaliam a situação, coletam relatos e sobrevivem à primeira noite no cemitério enquanto descobrem a origem da maldição.
+- **Capítulo 2 — A Fonte da Maldição (Nível 1–2):** Com a origem conhecida, os heróis precisam confrontar o núcleo da maldição — a oliveira sobre o túmulo do fundador — e decidir como romper o ciclo.
 
 ---
 ## Navegação
