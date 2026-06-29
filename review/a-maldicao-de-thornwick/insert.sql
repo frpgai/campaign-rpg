@@ -156,7 +156,7 @@ BEGIN
   -- ==========================================================
   -- CAMPAIGN
   -- ==========================================================
-  INSERT INTO campaigns (slug, title, description, intro_narration, cover_image_prompt, status)
+  INSERT INTO campaigns (slug, title, description, intro_narration, cover_image_prompt, status, system_id, level_range)
   VALUES (
     'a-maldicao-de-thornwick',
     'A Maldição de Thornwick',
@@ -167,7 +167,9 @@ A aldeia de Thornwick aparece no final de uma tarde cinzenta. Pequena, de pedra 
 
 Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com mão trêmula: "PROIBIDA A SAÍDA APÓS O POR DO SOL. POR ORDEM DO CONSELHO DE THORNWICK." Não há data. Não há assinatura. E não há ninguém para explicar.',
     'A dark medieval village at dusk, fog rolling in from the north. A hilltop cemetery looms in the background, its wrought-iron gate ajar, emanating a sickly greenish-yellow glow from between the gravestones. An ancient gnarled olive tree at the cemetery''s center drips black sap from runes carved into its roots. The village below has shuttered windows, a single dying torch by the well, and doors reinforced with planks. Silhouettes of undead figures can be glimpsed between the headstones. Color palette: deep charcoal, aged gold, blood red, moss green, pale moonlight. Style: atmospheric hand-painted gothic fantasy illustration, detailed and melancholic.',
-    'published'
+    'published',
+    '01317cd9-3c0c-48a9-9227-444dd9a57149',
+    '1-3'
   )
   ON CONFLICT (slug) DO UPDATE SET
     title              = EXCLUDED.title,
@@ -175,6 +177,8 @@ Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com m
     intro_narration    = EXCLUDED.intro_narration,
     cover_image_prompt = EXCLUDED.cover_image_prompt,
     status             = EXCLUDED.status,
+    system_id          = EXCLUDED.system_id,
+    level_range        = EXCLUDED.level_range,
     updated_at         = now()
   RETURNING id INTO v_campaign_id;
 
