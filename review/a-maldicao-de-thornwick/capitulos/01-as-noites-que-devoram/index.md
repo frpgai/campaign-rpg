@@ -16,7 +16,10 @@ Este capítulo é o momento em que os heróis chegam, veem, sentem o peso do que
 
 ## Narrando Este Capítulo
 
-**Papel narrativo**: discovery
+- **Papel narrativo**: discovery
+- **Estilo de Narração**: Voz cansada, misteriosa e pausada, carregando a melancolia de uma vila assombrada.
+- **Efeito de Transição**: Som de passos lentos em estrada de cascalho úmido, aproximando-se do portão de madeira.
+- **Trilha Sonora**: Violoncelo melancólico em tom menor com arranjo sutil de cordas de fundo.
 **Função**: Os heróis descobrem que Thornwick tem um problema sobrenatural ativo, recolhem os primeiros indícios da origem da maldição (nome de Aldric, o cemitério, a casa abandonada) e sobrevivem à primeira noite de combate com os mortos.
 
 O fluxo esperado deste capítulo é:

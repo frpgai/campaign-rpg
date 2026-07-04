@@ -27,6 +27,7 @@ DO $main$
 DECLARE
   -- campaign
   v_campaign_id    UUID;
+  v_system_id      UUID;
 
   -- adventures
   v_adv1_id        UUID;
@@ -153,11 +154,15 @@ BEGIN
   SELECT id INTO v_poi_simbolo_arcano   FROM pois WHERE slug = 'arcane-symbol'         LIMIT 1;
   SELECT id INTO v_poi_bau_trancado     FROM pois WHERE slug = 'locked-chest'          LIMIT 1;
 
+  -- Resolve system_id
+  SELECT id INTO v_system_id FROM systems WHERE slug = 'dnd_5e_srd_521' LIMIT 1;
+
   -- ==========================================================
   -- CAMPAIGN
   -- ==========================================================
-  INSERT INTO campaigns (slug, title, description, intro_narration, cover_image_prompt, status)
+  INSERT INTO campaigns (system_id, slug, title, description, intro_narration, cover_image_prompt, status, start_cta_label)
   VALUES (
+    v_system_id,
     'a-maldicao-de-thornwick',
     'A Maldição de Thornwick',
     'Libertar a aldeia de Thornwick das criaturas que emergem do cemitério toda noite antes que os sobreviventes sejam consumidos. A maldição é o eco da dor do curandeiro Aldric, exilado décadas atrás — não vilão, mas vítima de uma injustiça que não encontrou nome.',
@@ -167,14 +172,17 @@ A aldeia de Thornwick aparece no final de uma tarde cinzenta. Pequena, de pedra 
 
 Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com mão trêmula: "PROIBIDA A SAÍDA APÓS O POR DO SOL. POR ORDEM DO CONSELHO DE THORNWICK." Não há data. Não há assinatura. E não há ninguém para explicar.',
     'A dark medieval village at dusk, fog rolling in from the north. A hilltop cemetery looms in the background, its wrought-iron gate ajar, emanating a sickly greenish-yellow glow from between the gravestones. An ancient gnarled olive tree at the cemetery''s center drips black sap from runes carved into its roots. The village below has shuttered windows, a single dying torch by the well, and doors reinforced with planks. Silhouettes of undead figures can be glimpsed between the headstones. Color palette: deep charcoal, aged gold, blood red, moss green, pale moonlight. Style: atmospheric hand-painted gothic fantasy illustration, detailed and melancholic.',
-    'published'
+    'published',
+    'Entrar na Cidade'
   )
   ON CONFLICT (slug) DO UPDATE SET
+    system_id          = EXCLUDED.system_id,
     title              = EXCLUDED.title,
     description        = EXCLUDED.description,
     intro_narration    = EXCLUDED.intro_narration,
     cover_image_prompt = EXCLUDED.cover_image_prompt,
     status             = EXCLUDED.status,
+    start_cta_label    = EXCLUDED.start_cta_label,
     updated_at         = now()
   RETURNING id INTO v_campaign_id;
 
@@ -238,28 +246,40 @@ Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com m
   -- ==========================================================
   -- ADVENTURES
   -- ==========================================================
-  INSERT INTO adventures (campaign_id, slug, adventure_type, position, title, description, narrative_role, level_start, level_end)
+  INSERT INTO adventures (campaign_id, slug, adventure_type, position, title, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, narrative_role, level_start, level_end)
   VALUES (
     v_campaign_id, '01-as-noites-que-devoram', 'main', 1,
     'As Noites que Devoram',
     'Os heróis chegam à aldeia de Thornwick, investigam a origem dos ataques noturnos de mortos-vivos, descobrem a identidade de Aldric e sobrevivem à primeira noite de combate.',
+    'Thornwick parece, à primeira vista, uma aldeia como qualquer outra: uma praça central com um poço, uma igreja de pedra com o telhado remendado, um aglomerado de casas de madeira e argila que se espalham pela encosta como se tivessem rolado de cima. Mas algo está errado desde o momento em que os heróis chegam pela estrada do sul...',
+    'Voz cansada, misteriosa e pausada, carregando a melancolia de uma vila assombrada.',
+    'Som de passos lentos em estrada de cascalho úmido, aproximando-se do portão de madeira.',
+    'Violoncelo melancólico em tom menor com arranjo sutil de cordas de fundo.',
     'discovery', 1, 2
   )
   ON CONFLICT (campaign_id, slug) DO UPDATE SET
     title = EXCLUDED.title, description = EXCLUDED.description,
+    intro_narration = EXCLUDED.intro_narration, narration_style = EXCLUDED.narration_style,
+    transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
     narrative_role = EXCLUDED.narrative_role, position = EXCLUDED.position,
     level_start = EXCLUDED.level_start, level_end = EXCLUDED.level_end, updated_at = now()
   RETURNING id INTO v_adv1_id;
 
-  INSERT INTO adventures (campaign_id, slug, adventure_type, position, title, description, narrative_role, level_start, level_end)
+  INSERT INTO adventures (campaign_id, slug, adventure_type, position, title, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, narrative_role, level_start, level_end)
   VALUES (
     v_campaign_id, '02-a-fonte-da-maldicao', 'main', 2,
     'A Fonte da Maldição',
     'Os heróis vão ao cemitério, descobrem a cripta de Aldric, enfrentam seu fantasma — por ritual de reconhecimento ou combate — e desfazem o altar que sustenta a maldição.',
+    'O cemitério de Thornwick sempre foi um lugar de mau presságio para quem chegasse sem convite — mas agora é algo pior: é um lugar vivo. O chão entre as lápides respira. A terra está aquecida mesmo nas manhãs frias, como se algo sob ela gerasse calor próprio. As lápides mais antigas, na seção norte onde os fundadores da aldeia foram enterrados, estão cobertas de um líquen escuro que não existia há uma geração. E na oliveira ao centro — a mais velha de todas, com tronco grosso como dois homens abraçados — a seiva que escorre das ruínas gravadas na casca é negra e não seca nunca.',
+    'Voz profunda, grave e solene, ecoando como se estivesse sob a terra ou em uma catedral vazia.',
+    'Portão de ferro antigo e pesado rangendo ao abrir lentamente, seguido por vento frio batendo em folhas secas.',
+    'Canto coral baixo com notas graves sustentadas de órgão e silêncio entre as frases.',
     'climax', 1, 2
   )
   ON CONFLICT (campaign_id, slug) DO UPDATE SET
     title = EXCLUDED.title, description = EXCLUDED.description,
+    intro_narration = EXCLUDED.intro_narration, narration_style = EXCLUDED.narration_style,
+    transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
     narrative_role = EXCLUDED.narrative_role, position = EXCLUDED.position,
     level_start = EXCLUDED.level_start, level_end = EXCLUDED.level_end, updated_at = now()
   RETURNING id INTO v_adv2_id;
@@ -272,11 +292,15 @@ Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com m
   -- ==========================================================
   -- SCENES — Capítulo 1
   -- ==========================================================
-  INSERT INTO scenes (adventure_id, slug, name, description, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
   VALUES (
     v_adv1_id, '01-a-vila-que-respira-com-medo',
     'A Vila que Respira com Medo',
+    'Os heróis chegam à praça central vazia e encontram Marta e Padre Henwick.',
     'A estrada que desce para Thornwick parece normal à distância — casas de pedra cinzenta, uma torre de igreja, campos de centeio dos dois lados. Mas conforme vocês se aproximam, o silêncio fica pesado demais para ser coincidência. Não há crianças. Os cães não latem. Todas as janelas estão fechadas com tábuas, e a única fogueira da praça central está apagada, com as brasas frias de horas atrás. Uma mulher velha sentada num banco de pedra olha para vocês sem surpresa, como se estivesse esperando. Do lado oposto da praça, um padre de hábito surrado se aproxima de mãos postas — não em oração, mas em súplica.',
+    'Voz cansada e atenta, descrevendo os detalhes sensoriais da praça com pausas longas.',
+    'O som do vento uivante diminuindo gradualmente conforme o grupo passa o portal de entrada, dando lugar a um silêncio opressor.',
+    'Sem música de fundo, apenas som ambiente de vento sutil e ruídos de madeira velha estalando de longe.',
     'Top-down grid map of a small medieval village square, approximately 30x30 meters. Central feature: an old stone well with a dead torch on a post beside it. Surrounding buildings: a stone church with a reinforced wooden door to the north, a barn with a heavy beam across its door to the east, a row of 3-4 attached stone houses with boarded windows to the south and west. A stone bench near the well where an elderly woman sits. Cobblestone plaza, moss between the stones, a dead fire pit near the well. Overcast sky atmosphere. Style: top-down D&D 5e grid map, hand-drawn aesthetic, muted earth tones with grey stone.',
     'O velho Harwick disse, antes de morrer, que tinha uma coisa na garganta que precisava dizer. Mas morreu antes de dizer. Minha mãe estava lá e ficou acordada três noites com isso na cabeça.
 
@@ -290,17 +314,25 @@ Diretrizes de Condução: Marta é a chave emocional. Se tratada com desrespeito
     1
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, description = EXCLUDED.description, map_prompt = EXCLUDED.map_prompt,
-    rumors_text = EXCLUDED.rumors_text, transition_text = EXCLUDED.transition_text,
-    gm_notes = EXCLUDED.gm_notes, scene_order = EXCLUDED.scene_order, updated_at = now()
+    name = EXCLUDED.name, description = EXCLUDED.description,
+    intro_narration = EXCLUDED.intro_narration, narration_style = EXCLUDED.narration_style,
+    transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
+    map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
+    transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
+    scene_order = EXCLUDED.scene_order, updated_at = now()
   RETURNING id INTO v_scene1_id;
 
-  INSERT INTO scenes (adventure_id, slug, name, description, map_prompt, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
   VALUES (
     v_adv1_id, '02-o-que-os-mortos-deixaram',
     'O Que os Mortos Deixaram',
+    'Investigação da casa abandonada do curandeiro Aldric.',
     'A porta cede com um empurrão suave — o trinco de madeira apodreceu há anos. O cheiro que entra primeiro é de ervas secas e terra úmida, dois aromas que, separados, seriam comuns, mas juntos formam algo medicinal e ligeiramente amargo. A luz do fim de tarde corta a poeira em suspensão como listras douradas. Vocês veem uma bancada de trabalho com feixes de plantas pendurados pelo teto — algumas ainda reconhecíveis, outras reduzidas a farelo escuro. No canto, uma cama estreita com cobertor dobrado, como se alguém esperasse voltar. E sobre a bancada, coberto por uma camada de pó do tamanho de um dedo, um livro encadernado em couro com o nome "A." gravado na capa.',
+    'Voz curiosa e pausada, focada na poeira e na descoberta do diário.',
+    'Som de porta de madeira antiga e ressecada abrindo com esforço, poeira caindo levemente.',
+    'Clarinete baixo solo ou flauta de madeira solitária soprando uma melodia triste e distante.',
     'Top-down grid map of a small healer''s cottage interior, approximately 10x8 meters. Main room: a wooden workbench running along the east wall, covered in dried herbs hanging from the ceiling above it. A small fireplace on the north wall with cold ashes. A narrow bed in the northwest corner with a folded blanket. A wooden chair and small table in the center. A locked wooden chest beneath the workbench. One window (boarded from outside, thin slats of light entering). A door to the south (entrance). Style: top-down D&D 5e hand-drawn grid map, muted earthy tones, detailed interior.',
+    NULL,
     'Com o diário (e idealmente o pergaminho), os heróis têm o contexto para o que vem. O sol começa a cair. Voltar para a aldeia agora leva à Cena 1.3.',
     'Resumo: A casa de Aldric fica a 300 metros da praça. Cena investigativa — sem combate. O diário revela quem era Aldric: não antagonista, mas vítima de injustiça. O pergaminho encontrado aqui é o objeto-chave do Capítulo 2.
 
@@ -308,17 +340,25 @@ Diretrizes de Condução: O pergaminho no diário é o objeto-chave do Cap. 2. I
     2
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, description = EXCLUDED.description, map_prompt = EXCLUDED.map_prompt,
+    name = EXCLUDED.name, description = EXCLUDED.description,
+    intro_narration = EXCLUDED.intro_narration, narration_style = EXCLUDED.narration_style,
+    transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
+    map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
     scene_order = EXCLUDED.scene_order, updated_at = now()
   RETURNING id INTO v_scene2_id;
 
-  INSERT INTO scenes (adventure_id, slug, name, description, map_prompt, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
   VALUES (
     v_adv1_id, '03-a-primeira-noite',
     'A Primeira Noite',
+    'Combate e sobrevivência contra o primeiro ataque de mortos-vivos na praça.',
     'O último sino da igreja bate sete vezes e depois para — como se o padre tivesse largado a corda do meio. Do norte, do alto da colina, vem um som que vocês não conseguem nomear na primeira vez que ouvem: um ranger úmido, lento, como de dobradiças enferrujadas abrindo debaixo da terra. Depois de um momento, vocês identificam: é solo. Terra pressionada de baixo para cima. As tochas ao longo da praça tremem num vento que não existe. E no portão da igreja, o Padre Henwick levanta sua tocha com a mão errada — a mão que não treme — e diz, em voz muito baixa: "Aqui vêm eles."',
+    'Voz tensa, urgente e sussurrada, antecipando o combate eminente.',
+    'Efeito de Transição: Sinos de igreja badalando de forma descompassada de longe, seguidos pelo som surdo de garras e terra mexendo.',
+    'Percussão tensa de tambores abafados e violinos em staccato subindo de tom gradativamente.',
     'Top-down grid map of a small medieval village square at night, 30x30 meters. Same layout as Scene 1.1 but in nighttime lighting: deep shadows, a single torch by the church door casting warm orange light in a small radius. Undead approach from the north road. The barn door is reinforced. Style: top-down D&D 5e night encounter map, heavy use of shadows, torch-lit areas in warm amber, dark blues and greys for shadow zones.',
+    NULL,
     'Na manhã seguinte, um jovem aldeão diz em voz baixa: "Eu vi. O chão do cemitério se mexeu de dia hoje." Este é o fio que leva ao Capítulo 2.',
     'Resumo: O sol se foi. Os mortos descem do cemitério pela praça central. Padre Henwick está na porta da igreja com uma tocha — âncora moral dos aldeões. Os heróis decidem onde ficam quando a noite começa.
 
@@ -326,7 +366,10 @@ Diretrizes de Condução: Esta cena não precisa ser difícil — precisa ser at
     3
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, description = EXCLUDED.description, map_prompt = EXCLUDED.map_prompt,
+    name = EXCLUDED.name, description = EXCLUDED.description,
+    intro_narration = EXCLUDED.intro_narration, narration_style = EXCLUDED.narration_style,
+    transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
+    map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
     scene_order = EXCLUDED.scene_order, updated_at = now()
   RETURNING id INTO v_scene3_id;
@@ -334,13 +377,17 @@ Diretrizes de Condução: Esta cena não precisa ser difícil — precisa ser at
   -- ==========================================================
   -- SCENES — Capítulo 2
   -- ==========================================================
-  INSERT INTO scenes (adventure_id, slug, name, description, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
   VALUES (
     v_adv2_id, '01-o-cemiterio-que-respira',
     'O Cemitério que Respira',
+    'Investigação do cemitério e descoberta da escadaria secreta na oliveira antiga.',
     'O portão de ferro cede com um toque. O cemitério de Thornwick é menor do que parece de longe — talvez dois campos de futebol de lápides dispostas sem ordem perfeita, separadas por caminhos de pedra irregular cobertos de musgo. A oliveira ao centro é enorme, mais velha do que qualquer pessoa viva na aldeia, e dela vem um cheiro que não é exatamente podridão — é mais como terra molhada com algo mineral por baixo. A seiva negra que escorre da casca não parece natural. E ao redor das raízes mais grossas, ao norte, o solo está irregular como se tivesse sido empurrado de baixo para cima várias vezes. Há calor vindo do chão. Não o calor do sol — o sol desta manhã está nublado. O calor vem de dentro.',
+    'Voz sombria, solene e misteriosa, destacando o calor e a seiva negra nas árvores.',
+    'O som agudo de portão de ferro enferrujado sendo empurrado, rangendo demoradamente.',
+    'Sons de vento gélido sibilando entre lápides, com ocasionais batidas distantes de sino fúnebre.',
     'Top-down grid map of a small rural cemetery, approximately 40x40 meters. Iron gate entrance to the south. Grave markers of various sizes throughout, older and more eroded toward the north section. A massive ancient olive tree at the center-north, its roots spreading visibly above ground. A section of disturbed earth near the olive tree''s north roots indicating a hidden passage. Stone pathways between grave sections, covered in moss. The northern graves show signs of being pushed upward (uneven earth). A low stone wall surrounds the perimeter. Style: top-down D&D 5e grid map, atmospheric, slightly unsettling, muted greens and grey stones with a dark central focus on the olive tree.',
-    'Os ossos espalhados no chão da seção norte são restos de mortos-vivos destruídos em noites anteriores, arrastados de volta pelo feitiço ao amanhecer.
+    'Os ossos espalhados no chão da seção norte são restos de mortos-vivos destruídos in noites anteriores, arrastados de volta pelo feitiço ao amanhecer.
 
 A seiva negra da oliveira tem sabor de sal e cinza — como lágrimas velhas. Medicina DC 12: não é veneno, é algo que preserva, não destrói.
 
@@ -352,16 +399,23 @@ Diretrizes de Condução: Dois ritmos possíveis: combat-first ou exploration-fi
     1
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, description = EXCLUDED.description, map_prompt = EXCLUDED.map_prompt,
-    rumors_text = EXCLUDED.rumors_text, transition_text = EXCLUDED.transition_text,
-    gm_notes = EXCLUDED.gm_notes, scene_order = EXCLUDED.scene_order, updated_at = now()
+    name = EXCLUDED.name, description = EXCLUDED.description,
+    intro_narration = EXCLUDED.intro_narration, narration_style = EXCLUDED.narration_style,
+    transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
+    map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
+    transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
+    scene_order = EXCLUDED.scene_order, updated_at = now()
   RETURNING id INTO v_scene4_id;
 
-  INSERT INTO scenes (adventure_id, slug, name, description, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
   VALUES (
     v_adv2_id, '02-os-corredores-de-aldric',
     'Os Corredores de Aldric',
+    'Encontro com o fantasma de Aldric e oportunidade de apaziguar sua dor.',
     'O corredor termina e abre para uma câmara circular de teto baixo, iluminada pelas mesmas tochas de osso e cera que acenderam sozinhas lá atrás. No centro, sobre a laje de pedra, há um conjunto de ossos humanos dispostos com cuidado — não espalhados, não reanimados, mas organizados, como se alguém os tivesse deitado ali em paz. Nas paredes, ervas prensadas entre as pedras ainda têm cor, décadas depois. E no canto norte, onde a sombra é mais funda, há uma figura que não estava lá um segundo atrás: um homem de mãos abertas, translúcido, vestindo roupas de curandeiro que existiram há muito tempo. Ele não ataca. Ele olha. Seu rosto é o de alguém que esperou por isso por muito mais tempo do que esperava ter que esperar.',
+    'Voz sussurrada e reverente, como se falasse em um santuário sagrado.',
+    'Som de rocha pesada arrastando no chão de terra, seguido pelo acendimento sutil de tochas (sopro de fogo).',
+    'Sons de gotejamento ecoando em caverna úmida com fundo musical de sintetizador etéreo em fade-in lento.',
     'Top-down grid map of an underground stone chamber, approximately 12x10 meters. A narrow corridor entrance from the south (2 meters wide). The chamber is roughly circular with irregular stone walls. A central stone slab with human remains carefully arranged. Wall niches containing pressed herbs and small clay offerings. A carved stone figure of a robed man with open hands on the north wall. Sparse torch sconces on walls with strange pale torches (bone and beeswax). Subtle magical circle engraved in the floor around the slab. Style: top-down D&D 5e dungeon map, atmospheric, low candlelight effect, warm amber mixed with violet shadows.',
     'Os ossos sobre a laje não estão completos: faltam os ossos das mãos — presos entre as pedras das paredes.
 
@@ -375,18 +429,26 @@ Diretrizes de Condução: Esta é a cena mais importante. O Mestre deve deixar o
     2
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, description = EXCLUDED.description, map_prompt = EXCLUDED.map_prompt,
-    rumors_text = EXCLUDED.rumors_text, transition_text = EXCLUDED.transition_text,
-    gm_notes = EXCLUDED.gm_notes, scene_order = EXCLUDED.scene_order, updated_at = now()
+    name = EXCLUDED.name, description = EXCLUDED.description,
+    intro_narration = EXCLUDED.intro_narration, narration_style = EXCLUDED.narration_style,
+    transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
+    map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
+    transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
+    scene_order = EXCLUDED.scene_order, updated_at = now()
   RETURNING id INTO v_scene5_id;
 
   -- Cena 2.3a — desfecho pacífico (destravada pelo ritual completado)
-  INSERT INTO scenes (adventure_id, slug, name, description, map_prompt, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
   VALUES (
     v_adv2_id, '03a-o-coracao-da-maldicao-pacifico',
     'O Coração da Maldição (Pacífico)',
+    'Resolução pacífica desfazendo o altar sem combate.',
     'A fissura na parede norte leva a uma câmara diferente — maior, mais fria, com teto pontiagudo de calcário branco que reflete a luz em fragmentos irregulares. O som da água gotejando nas paredes é o único som. No centro, um altar circular de pedra negra pulsa com uma luz violeta que, conforme vocês se aproximam, vai ficando mais fraca — como uma chama morrendo, não de falta de ar, mas de falta de razão para continuar. O altar espera.',
+    'Voz pesada e solene, com ressonância que denota a profundidade mágica do altar.',
+    'Um zumbido grave de energia mágica vibrando no ar, seguido por um sopro gélido (sussurro espiritual).',
+    'Canto lírico melancólico de voz feminina sem letra, acompanhado por um pad harmônico de mistério.',
     'Top-down grid map of a natural limestone cavern, approximately 15x12 meters. Irregular walls with water dripping marks. A perfectly flat floor. At the center: a circular black stone altar, approximately 2 meters diameter, with an arcane circle glowing faint violet — dimming. Thin arcane lines run from altar to walls. A narrow crack in the north wall. A pressure plate trap near the entrance (Investigation DC 15). A crack in the southeast wall (escape route, Perception DC 20). Style: top-down D&D 5e dungeon map, natural cave, atmospheric, violet fading light.',
+    NULL,
     'Com o altar dissolvido, os heróis emergem no cemitério ao amanhecer. Thornwick começa a abrir as primeiras janelas. Alguém acende uma fogueira na praça central. Desta vez, ela pega. FIM DA CAMPANHA.',
     'Resumo: Câmara natural de calcário além de fissura na parede norte. Altar circular de pedra negra ao centro — o mecanismo da maldição. O altar pulsa com luz violeta fraca, como chama morrendo por falta de razão para continuar. A câmara está silenciosa. O ritual é um ato de cuidado: desfazer algo que não deveria existir, com respeito.
 
@@ -394,18 +456,26 @@ Diretrizes de Condução: Esta cena deve ser sentida como alívio silencioso. Pe
     3
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, description = EXCLUDED.description, map_prompt = EXCLUDED.map_prompt,
+    name = EXCLUDED.name, description = EXCLUDED.description,
+    intro_narration = EXCLUDED.intro_narration, narration_style = EXCLUDED.narration_style,
+    transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
+    map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
     scene_order = EXCLUDED.scene_order, updated_at = now()
   RETURNING id INTO v_scene6a_id;
 
   -- Cena 2.3b — desfecho conflito/Wraith (destravada pela recusa do ritual)
-  INSERT INTO scenes (adventure_id, slug, name, description, map_prompt, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
   VALUES (
     v_adv2_id, '03b-o-coracao-da-maldicao-conflito',
     'O Coração da Maldição (Conflito)',
+    'Combate final contra o Wraith de Aldric corrompido pela dor.',
     'A fissura na parede norte não está simplesmente aberta — está rasgada, as bordas de pedra forçadas de dentro para fora. A câmara além é fria como poço no inverno, e a luz violeta que pulsava no altar agora é vermelha escura, cor de sangue coagulado. Do centro da câmara, a figura que foi Aldric olha para vocês — mas não há mais reconhecimento nos olhos. Não há mais dor. Há apenas raiva que não encontrou saída por tempo demais e agora é tudo que resta.',
+    'Voz pesada e solene, com ressonância que denota a profundidade mágica do altar.',
+    'Um zumbido grave de energia mágica vibrando no ar, seguido por um sopro gélido (sussurro espiritual).',
+    'Canto lírico melancólico de voz feminina sem letra, acompanhado por um pad harmônico de mistério.',
     'Top-down grid map of a natural limestone cavern, approximately 15x12 meters. Irregular walls with water dripping marks. A perfectly flat floor. At the center: a circular black stone altar with an arcane circle glowing dark red. The crack in the north wall is forced open wider than before. A pressure plate trap near the entrance (Investigation DC 15). A crack in the southeast wall (escape route, Perception DC 20). Style: top-down D&D 5e dungeon map, natural cave, ominous dark red light at center, cold atmosphere.',
+    NULL,
     'O Wraith se dissolve em silêncio absoluto — sem grito final, sem luz dramática. Apenas some. O altar ainda precisa ser desfeito (ritual ainda necessário após o combate). A sensação é de vitória incompleta: os heróis venceram, mas o que venceram era trágico, não vil. FIM DA CAMPANHA.',
     'Resumo: Câmara natural de calcário. A fissura na parede norte está rasgada — bordas de pedra forçadas de dentro para fora. A câmara é fria como poço no inverno. A luz violeta do altar agora é vermelha escura, cor de sangue coagulado. Do centro, a figura que foi Aldric olha para os heróis — mas não há mais reconhecimento nos olhos. Apenas raiva que não encontrou saída por tempo demais.
 
@@ -413,7 +483,10 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     4
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
-    name = EXCLUDED.name, description = EXCLUDED.description, map_prompt = EXCLUDED.map_prompt,
+    name = EXCLUDED.name, description = EXCLUDED.description,
+    intro_narration = EXCLUDED.intro_narration, narration_style = EXCLUDED.narration_style,
+    transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
+    map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
     scene_order = EXCLUDED.scene_order, updated_at = now()
   RETURNING id INTO v_scene6b_id;

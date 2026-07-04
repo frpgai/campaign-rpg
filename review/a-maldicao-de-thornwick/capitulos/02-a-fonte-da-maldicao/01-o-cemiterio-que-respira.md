@@ -11,6 +11,10 @@ A oliveira ao centro é o elemento mais desconcertante. Viva, enorme, com copa q
 
 ## Narração de Abertura
 
+- **Estilo de Narração**: Voz sombria, solene e misteriosa, destacando o calor e a seiva negra nas árvores.
+- **Efeito de Transição**: O som agudo de portão de ferro enferrujado sendo empurrado, rangendo demoradamente.
+- **Trilha Sonora**: Sons de vento gélido sibilando entre lápides, com ocasionais batidas distantes de sino fúnebre.
+
 > *Leia ou parafraseie este texto quando os heróis entrarem no cemitério:*
 >
 > *O portão de ferro cede com um toque. O cemitério de Thornwick é menor do que parece de longe — talvez dois campos de futebol de lápides dispostas sem ordem perfeita, separadas por caminhos de pedra irregular cobertos de musgo. A oliveira ao centro é enorme, mais velha do que qualquer pessoa viva na aldeia, e dela vem um cheiro que não é exatamente podridão — é mais como terra molhada com algo mineral por baixo. A seiva negra que escorre da casca não parece natural. E ao redor das raízes mais grossas, ao norte, o solo está irregular como se tivesse sido empurrado de baixo para cima várias vezes. Há calor vindo do chão. Não o calor do sol — o sol desta manhã está nublado. O calor vem de dentro.*

@@ -16,7 +16,10 @@ As três cenas deste capítulo levam os heróis do portão externo até o coraç
 
 ## Narrando Este Capítulo
 
-**Papel narrativo**: climax
+- **Papel narrativo**: climax
+- **Estilo de Narração**: Voz profunda, grave e solene, ecoando como se estivesse sob a terra ou em uma catedral vazia.
+- **Efeito de Transição**: Portão de ferro antigo e pesado rangendo ao abrir lentamente, seguido por vento frio batendo em folhas secas.
+- **Trilha Sonora**: Canto coral baixo com notas graves sustentadas de órgão e silêncio entre as frases.
 **Função**: Os heróis enfrentam a fonte da maldição. Descobrem a cripta de Aldric, podem encontrar seu fantasma e — dependendo das escolhas — apaziguá-lo com reconhecimento e compaixão ou combatê-lo até o fim. O Wraith só aparece se o Ghost não for apaziguado, representando a dor que se transforma em fúria pura.
 
 O fluxo esperado deste capítulo é:

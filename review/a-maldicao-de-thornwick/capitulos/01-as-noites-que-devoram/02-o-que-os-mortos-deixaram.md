@@ -9,6 +9,10 @@ Esta cena é investigativa. Não há combate — apenas o peso acumulado de uma 
 
 ## Narração de Abertura
 
+- **Estilo de Narração**: Voz curiosa e pausada, focada na poeira e na descoberta do diário.
+- **Efeito de Transição**: Som de porta de madeira antiga e ressecada abrindo com esforço, poeira caindo levemente.
+- **Trilha Sonora**: Clarinete baixo solo ou flauta de madeira solitária soprando uma melodia triste e distante.
+
 > *Leia ou parafraseie este texto quando os heróis chegarem:*
 >
 > *A porta cede com um empurrão suave — o trinco de madeira apodreceu há anos. O cheiro que entra primeiro é de ervas secas e terra úmida, dois aromas que, separados, seriam comuns, mas juntos formam algo medicinal e ligeiramente amargo. A luz do fim de tarde corta a poeira em suspensão como listras douradas. Vocês veem uma bancada de trabalho com feixes de plantas pendurados pelo teto — algumas ainda reconhecíveis, outras reduzidas a farelo escuro. No canto, uma cama estreita com cobertor dobrado, como se alguém esperasse voltar. E sobre a bancada, coberto por uma camada de pó do tamanho de um dedo, um livro encadernado em couro com o nome "A." gravado na capa.*

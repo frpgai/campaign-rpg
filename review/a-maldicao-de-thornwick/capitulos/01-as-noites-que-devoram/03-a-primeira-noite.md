@@ -9,6 +9,10 @@ O Padre Henwick está na porta da igreja com uma tocha. Ele vai ficando ali. Os 
 
 ## Narração de Abertura
 
+- **Estilo de Narração**: Voz tensa, urgente e sussurrada, antecipando o combate eminente.
+- **Efeito de Transição**: Sinos de igreja badalando de forma descompassada de longe, seguidos pelo som surdo de garras e terra mexendo.
+- **Trilha Sonora**: Percussão tensa de tambores abafados e violinos em staccato subindo de tom gradativamente.
+
 > *Leia ou parafraseie este texto quando a noite cair:*
 >
 > *O último sino da igreja bate sete vezes e depois para — como se o padre tivesse largado a corda do meio. Do norte, do alto da colina, vem um som que vocês não conseguem nomear na primeira vez que ouvem: um ranger úmido, lento, como de dobradiças enferrujadas abrindo debaixo da terra. Depois de um momento, vocês identificam: é solo. Terra pressionada de baixo para cima. As tochas ao longo da praça tremem num vento que não existe. E no portão da church, o Padre Henwick levanta sua tocha com a mão errada — a mão que não treme — e diz, em voz muito baixa: "Aqui vêm eles."*

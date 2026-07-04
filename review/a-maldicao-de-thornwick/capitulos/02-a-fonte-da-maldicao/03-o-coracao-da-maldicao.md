@@ -11,6 +11,10 @@ A diferença entre as duas versões desta cena não é apenas narrativa: é tona
 
 ## Narração de Abertura (Versão Pacífica)
 
+- **Estilo de Narração**: Voz pesada e solene, com ressonância que denota a profundidade mágica do altar.
+- **Efeito de Transição**: Um zumbido grave de energia mágica vibrando no ar, seguido por um sopro gélido (sussurro espiritual).
+- **Trilha Sonora**: Canto lírico melancólico de voz feminina sem letra, acompanhado por um pad harmônico de mistério.
+
 > *Leia ou parafraseie este texto se o Ghost foi apaziguado:*
 >
 > *A fissura na parede norte leva a uma câmara diferente — maior, mais fria, com teto pontiagudo de calcário branco que reflete a luz em fragmentos irregulares. O som da água gotejando nas paredes é o único som. No centro, um altar circular de pedra negra pulsa com uma luz violeta que, conforme vocês se aproximam, vai ficando mais fraca — como uma chama morrendo, não de falta de ar, mas de falta de razão para continuar. O altar espera.*

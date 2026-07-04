@@ -9,6 +9,10 @@ Esta é a cena de estabelecimento. Os heróis aprendem o que está acontecendo �
 
 ## Narração de Abertura
 
+- **Estilo de Narração**: Voz cansada e atenta, descrevendo os detalhes sensoriais da praça com pausas longas.
+- **Efeito de Transição**: O som do vento uivante diminuindo gradualmente conforme o grupo passa o portal de entrada, dando lugar a um silêncio opressor.
+- **Trilha Sonora**: Sem música de fundo, apenas som ambiente de vento sutil e ruídos de madeira velha estalando de longe.
+
 > *Leia ou parafraseie este texto quando os heróis chegarem:*
 >
 > *A estrada que desce para Thornwick parece normal à distância — casas de pedra cinzenta, uma torre de igreja, campos de centeio dos dois lados. Mas conforme vocês se aproximam, o silêncio fica pesado demais para ser coincidência. Não há crianças. Os cães não latem. Todas as janelas estão fechadas com tábuas, e a única fogueira da praça central está apagada, com as brasas frias de horas atrás. Uma mulher velha sentada num banco de pedra olha para vocês sem surpresa, como se estivesse esperando. Do lado oposto da praça, um padre de hábito surrado se aproxima de mãos postas — não em oração, mas em súplica.*
