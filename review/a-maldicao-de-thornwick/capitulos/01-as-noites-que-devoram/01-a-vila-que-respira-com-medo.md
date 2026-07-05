@@ -19,7 +19,7 @@ Esta é a cena de estabelecimento. Os heróis aprendem o que está acontecendo �
 
 ## Prompt de Mapa
 
-> Top-down grid map of a small medieval village square, approximately 30x30 meters. Central feature: an old stone well with a dead torch on a post beside it. Surrounding buildings: a stone church with a reinforced wooden door to the north, a barn with a heavy beam across its door to the east, a row of 3-4 attached stone houses with boarded windows to the south and west. A stone bench near the well where an elderly woman sits. Cobblestone plaza, moss between the stones, a dead fire pit near the well. Overcast sky atmosphere. Style: top-down D&D 5e grid map, hand-drawn aesthetic, muted earth tones with grey stone.
+> A strictly flat 2D top-down overhead battlemap of a small medieval village square, designed for tactical RPG play. Perfect orthogonal perspective, bird's-eye view, no angle, flat projection. The center features an old stone well with a dead torch on a post and a nearby cold, extinguished campfire pit with dark grey ashes. To the north is a stone church with a reinforced wooden door. To the east is a wooden barn with a thick oak beam barricading the entrance. To the south and west, a row of weathered stone houses with boarded-up windows. The ground is made of cracked, ancient cobblestones with damp moss and dark soil growing between the cracks. The atmosphere is gloomy, foggy, and melancholic, with tendrils of mist creeping in. Style: Hand-painted gothic fantasy digital illustration, rich texture, high detail. Color palette: deep charcoal, aged gold accents, blood red undertones, moss green, pale moonlight, and muted grey stone. Gridless, clean design.
 
 ## Áreas
 
