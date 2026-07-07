@@ -535,13 +535,13 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, x_coordinate, y_coordinate, enabled, sort_order) VALUES
     (v_scene1_id, v_poi_fogueira,      'Fogueira apagada na praça',  'ambience', NULL, NULL,
      'A lenha foi posicionada com cuidado — alguém tentou acender várias vezes. Marcas de fósforo por toda a madeira. O medo impediu que ficasse tempo suficiente para a chama pegar.',
-     NULL, 48.0, 35.0, true, 1),
+     NULL, 56.0, 50.0, true, 1),
     (v_scene1_id, v_poi_celeiro_porta, 'Porta do celeiro reforçada', 'object', 'perception', 15,
      'Além das marcas de garras, no canto inferior direito à altura de uma criança, há marcas diferentes — dedos humanos que empurraram de dentro com força. Nem todos os mortos desta história vieram de fora.',
-     'Você vê apenas a porta reforçada e as marcas óbvias de garras.', 25.0, 65.0, true, 2),
+     'Você vê apenas a porta reforçada e as marcas óbvias de garras.', 75.0, 48.0, true, 2),
     (v_scene1_id, v_poi_poco_central,  'Poço central com corda nova','object', 'investigation', 12,
      'A corda nova tem sangue seco nas fibras perto do nó. Alguém foi ferido enquanto buscava água — mas o ferimento não foi mencionado a ninguém.',
-     'Você nota apenas que a corda é nova demais para o resto do poço, coberto de musgo velho.', 50.0, 50.0, true, 3);
+     'Você nota apenas que a corda é nova demais para o resto do poço, coberto de musgo velho.', 46.0, 46.0, true, 3);
 
   -- Cena 1.2
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, x_coordinate, y_coordinate, enabled, sort_order) VALUES
@@ -615,14 +615,14 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
   -- ==========================================================
   -- SCENE NPC DIALOGUES
   -- ==========================================================
-  INSERT INTO scene_npc_dialogues (scene_id, campaign_npc_id, sort_order, enabled)
-  VALUES (v_scene1_id, v_npc_marta_id, 1, true)
-  ON CONFLICT (scene_id, campaign_npc_id) DO UPDATE SET sort_order = EXCLUDED.sort_order, enabled = EXCLUDED.enabled
+  INSERT INTO scene_npc_dialogues (scene_id, campaign_npc_id, x_coordinate, y_coordinate, sort_order, enabled)
+  VALUES (v_scene1_id, v_npc_marta_id, 33.0, 48.0, 1, true)
+  ON CONFLICT (scene_id, campaign_npc_id) DO UPDATE SET x_coordinate = EXCLUDED.x_coordinate, y_coordinate = EXCLUDED.y_coordinate, sort_order = EXCLUDED.sort_order, enabled = EXCLUDED.enabled
   RETURNING id INTO v_snd_marta_s1;
 
-  INSERT INTO scene_npc_dialogues (scene_id, campaign_npc_id, sort_order, enabled)
-  VALUES (v_scene1_id, v_npc_henwick_id, 2, true)
-  ON CONFLICT (scene_id, campaign_npc_id) DO UPDATE SET sort_order = EXCLUDED.sort_order, enabled = EXCLUDED.enabled
+  INSERT INTO scene_npc_dialogues (scene_id, campaign_npc_id, x_coordinate, y_coordinate, sort_order, enabled)
+  VALUES (v_scene1_id, v_npc_henwick_id, 56.0, 31.0, 2, true)
+  ON CONFLICT (scene_id, campaign_npc_id) DO UPDATE SET x_coordinate = EXCLUDED.x_coordinate, y_coordinate = EXCLUDED.y_coordinate, sort_order = EXCLUDED.sort_order, enabled = EXCLUDED.enabled
   RETURNING id INTO v_snd_henwick_s1;
 
   INSERT INTO scene_npc_dialogues (scene_id, campaign_npc_id, sort_order, enabled)
