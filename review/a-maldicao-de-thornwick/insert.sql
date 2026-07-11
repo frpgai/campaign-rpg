@@ -160,7 +160,7 @@ BEGIN
   -- ==========================================================
   -- CAMPAIGN
   -- ==========================================================
-  INSERT INTO campaigns (system_id, slug, title, description, intro_narration, cover_image_prompt, status, start_cta_label)
+  INSERT INTO campaigns (system_id, slug, title, description, intro_narration, intro_narration_audio_url, cover_image_url, cover_image_prompt, status, start_cta_label, start_cta_subtext, min_players, max_players)
   VALUES (
     v_system_id,
     'a-maldicao-de-thornwick',
@@ -171,18 +171,28 @@ BEGIN
 A aldeia de Thornwick aparece no final de uma tarde cinzenta. Pequena, de pedra escura, com uma torre de igreja e campos de centeio que alguém colheu às pressas. À distância, parece normal. Mas conforme vocês se aproximam, algo pesa no ar — a ausência de fumaça saindo das chaminés, a ausência de crianças, a ausência de qualquer som que não seja o vento. Para quem viaja muito, ausência assim tem um nome: medo.
 
 Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com mão trêmula: "PROIBIDA A SAÍDA APÓS O POR DO SOL. POR ORDEM DO CONSELHO DE THORNWICK." Não há data. Não há assinatura. E não há ninguém para explicar.',
+    'narration-campaign-intro.mp3',
+    'cover.jpg',
     'A dark medieval village at dusk, fog rolling in from the north. A hilltop cemetery looms in the background, its wrought-iron gate ajar, emanating a sickly greenish-yellow glow from between the gravestones. An ancient gnarled olive tree at the cemetery''s center drips black sap from runes carved into its roots. The village below has shuttered windows, a single dying torch by the well, and doors reinforced with planks. Silhouettes of undead figures can be glimpsed between the headstones. Color palette: deep charcoal, aged gold, blood red, moss green, pale moonlight. Style: atmospheric hand-painted gothic fantasy illustration, detailed and melancholic.',
     'published',
-    'Entrar na Cidade'
+    'Entrar na Cidade',
+    NULL,
+    1,
+    5
   )
   ON CONFLICT (slug) DO UPDATE SET
     system_id          = EXCLUDED.system_id,
     title              = EXCLUDED.title,
     description        = EXCLUDED.description,
-    intro_narration    = EXCLUDED.intro_narration,
+    intro_narration           = EXCLUDED.intro_narration,
+    intro_narration_audio_url = EXCLUDED.intro_narration_audio_url,
+    cover_image_url           = EXCLUDED.cover_image_url,
     cover_image_prompt = EXCLUDED.cover_image_prompt,
     status             = EXCLUDED.status,
     start_cta_label    = EXCLUDED.start_cta_label,
+    start_cta_subtext  = EXCLUDED.start_cta_subtext,
+    min_players        = EXCLUDED.min_players,
+    max_players        = EXCLUDED.max_players,
     updated_at         = now()
   RETURNING id INTO v_campaign_id;
 
@@ -292,7 +302,7 @@ Na entrada da aldeia há um aviso pregado numa tábua de carvalho, escrito com m
   -- ==========================================================
   -- SCENES — Capítulo 1
   -- ==========================================================
-  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order, start_x, start_y)
   VALUES (
     v_adv1_id, '01-a-vila-que-respira-com-medo',
     'A Vila que Respira com Medo',
@@ -311,7 +321,8 @@ O padre diz que as bênçãos funcionam em tudo menos no cemitério. Mas eu vi e
     'Resumo: Os heróis chegam a Thornwick — silêncio anormal, portas pregadas, fogueira apagada. Marta senta no banco de pedra como imune ao medo. Padre Henwick aparece na porta da igreja em súplica. Mortos levantam toda noite há três semanas; a resposta está na colina ao norte.
 
 Diretrizes de Condução: Marta é a chave emocional. Se tratada com desrespeito, fecha-se — Henwick pode mencionar a casa como alternativa. A cena não pode ser bloqueada: os heróis precisam de alguma forma saber da casa.',
-    1
+    1,
+    50.0, 85.0
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
     name = EXCLUDED.name, description = EXCLUDED.description,
@@ -319,10 +330,10 @@ Diretrizes de Condução: Marta é a chave emocional. Se tratada com desrespeito
     transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
     map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
-    scene_order = EXCLUDED.scene_order, updated_at = now()
+    scene_order = EXCLUDED.scene_order, start_x = EXCLUDED.start_x, start_y = EXCLUDED.start_y, updated_at = now()
   RETURNING id INTO v_scene1_id;
 
-  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order, start_x, start_y)
   VALUES (
     v_adv1_id, '02-o-que-os-mortos-deixaram',
     'O Que os Mortos Deixaram',
@@ -337,7 +348,8 @@ Diretrizes de Condução: Marta é a chave emocional. Se tratada com desrespeito
     'Resumo: A casa de Aldric fica a 300 metros da praça. Cena investigativa — sem combate. O diário revela quem era Aldric: não antagonista, mas vítima de injustiça. O pergaminho encontrado aqui é o objeto-chave do Capítulo 2.
 
 Diretrizes de Condução: O pergaminho no diário é o objeto-chave do Cap. 2. Investigation DC 10 (deliberadamente baixo). Se não encontrarem aqui, pode aparecer gravado na parede da cripta na Cena 2.2. Quanto mais humano Aldric parecer antes do encontro, mais impactante será aquela cena.',
-    2
+    2,
+    200.0, 600.0
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
     name = EXCLUDED.name, description = EXCLUDED.description,
@@ -345,10 +357,10 @@ Diretrizes de Condução: O pergaminho no diário é o objeto-chave do Cap. 2. I
     transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
     map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
-    scene_order = EXCLUDED.scene_order, updated_at = now()
+    scene_order = EXCLUDED.scene_order, start_x = EXCLUDED.start_x, start_y = EXCLUDED.start_y, updated_at = now()
   RETURNING id INTO v_scene2_id;
 
-  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order, start_x, start_y)
   VALUES (
     v_adv1_id, '03-a-primeira-noite',
     'A Primeira Noite',
@@ -363,7 +375,8 @@ Diretrizes de Condução: O pergaminho no diário é o objeto-chave do Cap. 2. I
     'Resumo: O sol se foi. Os mortos descem do cemitério pela praça central. Padre Henwick está na porta da igreja com uma tocha — âncora moral dos aldeões. Os heróis decidem onde ficam quando a noite começa.
 
 Diretrizes de Condução: Esta cena não precisa ser difícil — precisa ser atmosférica. Os mortos são lentos e sem coordenação. Se os heróis tentarem comunicar-se, podem notar (Insight DC 14) que repetem o mesmo gesto — mãos abertas, como quem pede ou oferece algo.',
-    3
+    3,
+    50.0, 85.0
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
     name = EXCLUDED.name, description = EXCLUDED.description,
@@ -371,13 +384,13 @@ Diretrizes de Condução: Esta cena não precisa ser difícil — precisa ser at
     transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
     map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
-    scene_order = EXCLUDED.scene_order, updated_at = now()
+    scene_order = EXCLUDED.scene_order, start_x = EXCLUDED.start_x, start_y = EXCLUDED.start_y, updated_at = now()
   RETURNING id INTO v_scene3_id;
 
   -- ==========================================================
   -- SCENES — Capítulo 2
   -- ==========================================================
-  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order, start_x, start_y)
   VALUES (
     v_adv2_id, '01-o-cemiterio-que-respira',
     'O Cemitério que Respira',
@@ -396,7 +409,8 @@ Ao pressionar a orelha contra uma lápide antiga em silêncio absoluto, Percepti
     'Resumo: O portão de ferro cede com um toque. Lápides antigas cobertas de líquen preto, oliveira enorme com seiva negra. Ao norte do tronco, entre as raízes, escada de pedra desce para a cripta de Aldric. Padre Henwick ficou no portão externo.
 
 Diretrizes de Condução: Dois ritmos possíveis: combat-first ou exploration-first. O Mestre pode dar pistas visuais sem exigir teste: "as raízes ao norte formam quase um arco sobre o chão". Destruir a oliveira não é possível com ferramentas comuns — ela resiste a dano não-mágico.',
-    1
+    1,
+    400.0, 800.0
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
     name = EXCLUDED.name, description = EXCLUDED.description,
@@ -404,10 +418,10 @@ Diretrizes de Condução: Dois ritmos possíveis: combat-first ou exploration-fi
     transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
     map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
-    scene_order = EXCLUDED.scene_order, updated_at = now()
+    scene_order = EXCLUDED.scene_order, start_x = EXCLUDED.start_x, start_y = EXCLUDED.start_y, updated_at = now()
   RETURNING id INTO v_scene4_id;
 
-  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order, start_x, start_y)
   VALUES (
     v_adv2_id, '02-os-corredores-de-aldric',
     'Os Corredores de Aldric',
@@ -426,7 +440,8 @@ Na parede leste, atrás de pedra removível (Investigation DC 15), há segundo p
     'Resumo: Corredor estreito desce 11 degraus até câmara circular — memorial, não lugar de ódio. Ossos dispostos em paz, ervas nas paredes, estatueta de mãos abertas. O fantasma de Aldric emerge quando sente intenção de entender. O caminho tomado aqui determina qual versão da Cena 2.3 os heróis encontrarão.
 
 Diretrizes de Condução: Esta é a cena mais importante. O Mestre deve deixar os heróis liderar o ritual. O Ghost responde à intenção, não à mecânica perfeita. Se um herói tiver histórico de injustiça, este é o momento para tomar a frente organicamente.',
-    2
+    2,
+    450.0, 500.0
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
     name = EXCLUDED.name, description = EXCLUDED.description,
@@ -434,11 +449,11 @@ Diretrizes de Condução: Esta é a cena mais importante. O Mestre deve deixar o
     transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
     map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
-    scene_order = EXCLUDED.scene_order, updated_at = now()
+    scene_order = EXCLUDED.scene_order, start_x = EXCLUDED.start_x, start_y = EXCLUDED.start_y, updated_at = now()
   RETURNING id INTO v_scene5_id;
 
   -- Cena 2.3a — desfecho pacífico (destravada pelo ritual completado)
-  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order, start_x, start_y)
   VALUES (
     v_adv2_id, '03a-o-coracao-da-maldicao-pacifico',
     'O Coração da Maldição (Pacífico)',
@@ -453,7 +468,8 @@ Diretrizes de Condução: Esta é a cena mais importante. O Mestre deve deixar o
     'Resumo: Câmara natural de calcário além de fissura na parede norte. Altar circular de pedra negra ao centro — o mecanismo da maldição. O altar pulsa com luz violeta fraca, como chama morrendo por falta de razão para continuar. A câmara está silenciosa. O ritual é um ato de cuidado: desfazer algo que não deveria existir, com respeito.
 
 Diretrizes de Condução: Esta cena deve ser sentida como alívio silencioso. Pergunte ao grupo: "O que seu personagem sente ao sair do cemitério?" Esta campanha não tem tesouro dramático — tem uma aldeia que pode dormir de novo, e a memória de um homem que finalmente foi lembrado.',
-    3
+    3,
+    480.0, 480.0
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
     name = EXCLUDED.name, description = EXCLUDED.description,
@@ -461,11 +477,11 @@ Diretrizes de Condução: Esta cena deve ser sentida como alívio silencioso. Pe
     transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
     map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
-    scene_order = EXCLUDED.scene_order, updated_at = now()
+    scene_order = EXCLUDED.scene_order, start_x = EXCLUDED.start_x, start_y = EXCLUDED.start_y, updated_at = now()
   RETURNING id INTO v_scene6a_id;
 
   -- Cena 2.3b — desfecho conflito/Wraith (destravada pela recusa do ritual)
-  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order)
+  INSERT INTO scenes (adventure_id, slug, name, description, intro_narration, narration_style, transition_sfx, ambient_soundtrack, map_prompt, rumors_text, transition_text, gm_notes, scene_order, start_x, start_y)
   VALUES (
     v_adv2_id, '03b-o-coracao-da-maldicao-conflito',
     'O Coração da Maldição (Conflito)',
@@ -480,7 +496,8 @@ Diretrizes de Condução: Esta cena deve ser sentida como alívio silencioso. Pe
     'Resumo: Câmara natural de calcário. A fissura na parede norte está rasgada — bordas de pedra forçadas de dentro para fora. A câmara é fria como poço no inverno. A luz violeta do altar agora é vermelha escura, cor de sangue coagulado. Do centro, a figura que foi Aldric olha para os heróis — mas não há mais reconhecimento nos olhos. Apenas raiva que não encontrou saída por tempo demais.
 
 Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem grito final, sem luz dramática. Apenas some. O altar ainda precisa ser desfeito (ritual ainda necessário após o combate). A sensação é de vitória incompleta: os heróis venceram, mas o que venceram era trágico, não vil. Mesmo na luta contra o Wraith, um herói pode tentar o ritual no altar durante o combate — exige Concentração (Con DC 15 enquanto recebe dano) e uma rodada completa de ação. Se bem-sucedido, dissolve o altar e o Wraith simultaneamente. Pronunciar "Aldric" durante o combate faz o Wraith hesitar 1 turno (perda de ação).',
-    4
+    4,
+    480.0, 480.0
   )
   ON CONFLICT (adventure_id, slug) DO UPDATE SET
     name = EXCLUDED.name, description = EXCLUDED.description,
@@ -488,7 +505,7 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     transition_sfx = EXCLUDED.transition_sfx, ambient_soundtrack = EXCLUDED.ambient_soundtrack,
     map_prompt = EXCLUDED.map_prompt, rumors_text = EXCLUDED.rumors_text,
     transition_text = EXCLUDED.transition_text, gm_notes = EXCLUDED.gm_notes,
-    scene_order = EXCLUDED.scene_order, updated_at = now()
+    scene_order = EXCLUDED.scene_order, start_x = EXCLUDED.start_x, start_y = EXCLUDED.start_y, updated_at = now()
   RETURNING id INTO v_scene6b_id;
 
   -- ==========================================================
@@ -527,90 +544,186 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     (v_scene6b_id, v_cr_wraith, 'Wraith (Aldric corrompido)', 1, 'per_player', 1, 'narrative_only', true, '1800 XP/PC. HP: 67 × num_players. Não fala, não hesita. Life Drain + Specter de heróis mortos. Pronunciar "Aldric" em voz alta: Wraith hesita 1 turno. Ritual no altar durante combate (Con DC 15): dissolve Wraith simultaneamente.');
 
   -- ==========================================================
+  -- POI ACTIONS CATALOG — todos os POIs desta campanha permitem 'investigate'
+  -- ==========================================================
+  INSERT INTO poi_actions (poi_id, action_slug) VALUES
+    (v_poi_fogueira,         'investigate'),
+    (v_poi_celeiro_porta,    'investigate'),
+    (v_poi_poco_central,     'investigate'),
+    (v_poi_oliveira_runas,   'investigate'),
+    (v_poi_passagem_secreta, 'investigate'),
+    (v_poi_fissura_fuga,     'investigate'),
+    (v_poi_altar_arcano,     'investigate'),
+    (v_poi_armadilha,        'investigate'),
+    (v_poi_esqueleto,        'investigate'),
+    (v_poi_diario,           'investigate'),
+    (v_poi_lareira,          'investigate'),
+    (v_poi_estatua,          'investigate'),
+    (v_poi_simbolo_arcano,   'investigate'),
+    (v_poi_bau_trancado,     'investigate')
+  ON CONFLICT (poi_id, action_slug) DO NOTHING;
+
+  -- ==========================================================
   -- SCENE POINTS OF INTEREST
   -- ==========================================================
   DELETE FROM scene_points_of_interest WHERE scene_id IN (v_scene1_id, v_scene2_id, v_scene3_id, v_scene4_id, v_scene5_id, v_scene6a_id, v_scene6b_id);
 
   -- Cena 1.1
-  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, x_coordinate, y_coordinate, enabled, sort_order) VALUES
-    (v_scene1_id, v_poi_fogueira,      'Fogueira apagada na praça',  'ambience', NULL, NULL,
+  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
+    (v_scene1_id, v_poi_fogueira,      'Fogueira apagada na praça',  'ambience', 56.0, 50.0, true, 1),
+    (v_scene1_id, v_poi_celeiro_porta, 'Porta do celeiro reforçada', 'object',   75.0, 48.0, true, 2),
+    (v_scene1_id, v_poi_poco_central,  'Poço central com corda nova','object',   46.0, 46.0, true, 3);
+
+  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  FROM scene_points_of_interest spi
+  JOIN (VALUES
+    (v_poi_fogueira,      NULL::INTEGER, NULL::UUID,
      'A lenha foi posicionada com cuidado — alguém tentou acender várias vezes. Marcas de fósforo por toda a madeira. O medo impediu que ficasse tempo suficiente para a chama pegar.',
-     NULL, 56.0, 50.0, true, 1),
-    (v_scene1_id, v_poi_celeiro_porta, 'Porta do celeiro reforçada', 'object', 'perception', 15,
+     NULL::TEXT),
+    (v_poi_celeiro_porta, 15, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'perception'),
      'Além das marcas de garras, no canto inferior direito à altura de uma criança, há marcas diferentes — dedos humanos que empurraram de dentro com força. Nem todos os mortos desta história vieram de fora.',
-     'Você vê apenas a porta reforçada e as marcas óbvias de garras.', 75.0, 48.0, true, 2),
-    (v_scene1_id, v_poi_poco_central,  'Poço central com corda nova','object', 'investigation', 12,
+     'Você vê apenas a porta reforçada e as marcas óbvias de garras.'),
+    (v_poi_poco_central,  12, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
      'A corda nova tem sangue seco nas fibras perto do nó. Alguém foi ferido enquanto buscava água — mas o ferimento não foi mencionado a ninguém.',
-     'Você nota apenas que a corda é nova demais para o resto do poço, coberto de musgo velho.', 46.0, 46.0, true, 3);
+     'Você nota apenas que a corda é nova demais para o resto do poço, coberto de musgo velho.')
+  ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
+  WHERE spi.scene_id = v_scene1_id
+  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
 
   -- Cena 1.2
-  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, x_coordinate, y_coordinate, enabled, sort_order) VALUES
-    (v_scene2_id, v_poi_esqueleto, 'Esqueleto no canto da casa', 'object', 'investigation', 12,
+  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
+    (v_scene2_id, v_poi_esqueleto, 'Esqueleto no canto da casa', 'object',   15.0, 80.0, true, 1),
+    (v_scene2_id, v_poi_diario,    'Diário de Aldric (bancada)', 'object',   70.0, 30.0, true, 2),
+    (v_scene2_id, v_poi_lareira,   'Ervas queimadas na lareira', 'ambience', 85.0, 20.0, true, 3);
+
+  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  FROM scene_points_of_interest spi
+  JOIN (VALUES
+    (v_poi_esqueleto, 12, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
      'Os ossos têm marcas de artrite severa nas mãos — trabalhador manual enterrado há décadas. Nada de especial: a maldição não escolhe os maus nem os bons, apenas os mortos.',
-     'Você vê um esqueleto desarticulado no canto — provavelmente entrou aqui numa das noites passadas e foi destruído por alguém antes.', 15.0, 80.0, true, 1),
-    (v_scene2_id, v_poi_diario,   'Diário de Aldric (bancada)', 'object', 'investigation', 10,
+     'Você vê um esqueleto desarticulado no canto — provavelmente entrou aqui numa das noites passadas e foi destruído por alguém antes.'),
+    (v_poi_diario,    10, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
      'O diário revela: nome completo de Aldric, história com a aldeia, injustiça do exílio, última entrada sobre ir ao cemitério "antes de partir". Entre as páginas, pergaminho com tradução parcial: "Eu existia. Eu servi. Eu fui esquecido. Que quem ler isto me lembre." Crucial na Cena 2.2.',
-     'Você encontra o diário mas não consegue ler a letra cursiva e densa. Consegue apenas identificar que é diário pessoal com datas que cobrem décadas e o nome "Aldric" na primeira página.', 70.0, 30.0, true, 2),
-    (v_scene2_id, v_poi_lareira,  'Ervas queimadas na lareira', 'ambience', NULL, NULL,
+     'Você encontra o diário mas não consegue ler a letra cursiva e densa. Consegue apenas identificar que é diário pessoal com datas que cobrem décadas e o nome "Aldric" na primeira página.'),
+    (v_poi_lareira,   NULL::INTEGER, NULL::UUID,
      'Cheiro medicinal — camomila, lavanda, algo mais amargo. Quem viveu aqui queimava suas próprias ervas para purificar o ar. Humaniza o lugar: alguém cuidava daqui.',
-     NULL, 85.0, 20.0, true, 3);
+     NULL::TEXT)
+  ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
+  WHERE spi.scene_id = v_scene2_id
+  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
 
   -- Cena 1.3
-  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, x_coordinate, y_coordinate, enabled, sort_order) VALUES
-    (v_scene3_id, v_poi_fogueira,    'Fogueira apagada (noite)', 'ambience', NULL, NULL,
+  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
+    (v_scene3_id, v_poi_fogueira,     'Fogueira apagada (noite)', 'ambience', 48.0, 35.0, true, 1),
+    (v_scene3_id, v_poi_bau_trancado, 'Baú trancado no celeiro', 'object',    28.0, 68.0, true, 2);
+
+  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  FROM scene_points_of_interest spi
+  JOIN (VALUES
+    (v_poi_fogueira,     NULL::INTEGER, NULL::UUID,
      'De noite, a fogueira apagada torna-se ponto de referência negativa. Os mortos-vivos a contornam ligeiramente, como se a lembrança do calor ainda existisse neles.',
-     NULL, 48.0, 35.0, true, 1),
-    (v_scene3_id, v_poi_bau_trancado,'Baú trancado no celeiro', 'object', 'investigation', 15,
+     NULL::TEXT),
+    (v_poi_bau_trancado, 15, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
      'O baú contém: farinha de trigo para duas semanas, um frasco de óleo de lanterna, e — no fundo embrulhado em pano — uma faca de prata sem cabo do ferreiro da aldeia. A faca causa +1d4 dano adicional em mortos-vivos.',
-     'Você vê o baú mas não consegue abri-lo sem acordar os aldeões dentro do celeiro.', 28.0, 68.0, true, 2);
+     'Você vê o baú mas não consegue abri-lo sem acordar os aldeões dentro do celeiro.')
+  ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
+  WHERE spi.scene_id = v_scene3_id
+  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
 
   -- Cena 2.1
-  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, x_coordinate, y_coordinate, enabled, sort_order) VALUES
-    (v_scene4_id, v_poi_esqueleto,        'Ossos no chão (seção norte)', 'object', 'investigation', 10,
+  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
+    (v_scene4_id, v_poi_esqueleto,        'Ossos no chão (seção norte)',          'object',         55.0, 20.0, true, 1),
+    (v_scene4_id, v_poi_oliveira_runas,   'Altar com runas (tronco da oliveira)', 'object',         50.0, 45.0, true, 2),
+    (v_scene4_id, v_poi_passagem_secreta, 'Passagem secreta entre as raízes',     'hidden_passage', 52.0, 48.0, true, 3);
+
+  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  FROM scene_points_of_interest spi
+  JOIN (VALUES
+    (v_poi_esqueleto,        10, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
      'Fragmentos maiores têm marcas de impacto e marcas de recomposição parcial — o feitiço tentou reanimá-los mesmo após destruídos. Cada esqueleto destruído é um a menos para sempre.',
-     'Você vê apenas ossos quebrados espalhados, alguns com armaduras velhas corroídas.', 55.0, 20.0, true, 1),
-    (v_scene4_id, v_poi_oliveira_runas,   'Altar com runas (tronco da oliveira)', 'object', 'arcana', 12,
+     'Você vê apenas ossos quebrados espalhados, alguns com armaduras velhas corroídas.'),
+    (v_poi_oliveira_runas,   12, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'arcana'),
      'Símbolos de vinculação e memória — não de destruição. Aldric criou feitiço de lembrança, não de ataque. A oliveira é âncora física da maldição — destruí-la não resolve nada, a fonte está embaixo.',
-     'Você reconhece runas mágicas mas não consegue identificar escola ou propósito. Parecem antigas.', 50.0, 45.0, true, 2),
-    (v_scene4_id, v_poi_passagem_secreta, 'Passagem secreta entre as raízes', 'hidden_passage', 'investigation', 20,
+     'Você reconhece runas mágicas mas não consegue identificar escola ou propósito. Parecem antigas.'),
+    (v_poi_passagem_secreta, 20, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
      'Você encontra a tampa de pedra entre as raízes, perfeitamente encaixada. Marcas de mãos gravadas nos lados — esculpida de dentro para fora. Abre com Atletismo DC 12.',
-     'Você não encontra nada incomum além do solo perturbado.', 52.0, 48.0, true, 3);
+     'Você não encontra nada incomum além do solo perturbado.')
+  ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
+  WHERE spi.scene_id = v_scene4_id
+  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
 
   -- Cena 2.2
-  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, x_coordinate, y_coordinate, enabled, sort_order) VALUES
-    (v_scene5_id, v_poi_estatua,       'Estátua de Aldric (mãos abertas)', 'object', 'history', 12,
+  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
+    (v_scene5_id, v_poi_estatua,        'Estátua de Aldric (mãos abertas)', 'object',   50.0, 30.0, true, 1),
+    (v_scene5_id, v_poi_simbolo_arcano, 'Símbolo arcano no chão',           'ambience', 50.0, 50.0, true, 2),
+    (v_scene5_id, v_poi_esqueleto,      'Ossos de Aldric sobre a laje',     'object',   50.0, 70.0, true, 3);
+
+  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  FROM scene_points_of_interest spi
+  JOIN (VALUES
+    (v_poi_estatua,        12, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'history'),
      'Postura de mãos abertas, palmas para cima — gesto ritual de curandeiros: "ofereço o que tenho". Não é postura de poder. Quem reconhecer ganha vantagem no primeiro teste de interação com o Ghost.',
-     'Você vê estatueta tosca de pedra. Parece uma pessoa com os braços estendidos.', 50.0, 30.0, true, 1),
-    (v_scene5_id, v_poi_simbolo_arcano,'Símbolo arcano no chão', 'ambience', NULL, NULL,
+     'Você vê estatueta tosca de pedra. Parece uma pessoa com os braços estendidos.'),
+    (v_poi_simbolo_arcano, NULL::INTEGER, NULL::UUID,
      'O círculo gravado pulsa levemente com luz violeta se você olhar por mais de alguns segundos. É o feitiço respirando — não ameaçador, mais como batimento cardíaco.',
-     NULL, 50.0, 50.0, true, 2),
-    (v_scene5_id, v_poi_esqueleto,     'Ossos de Aldric sobre a laje', 'object', 'investigation', 10,
+     NULL::TEXT),
+    (v_poi_esqueleto,      10, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
      'Entre os ossos, segundo pergaminho dobrado dentro do que foi a caixa torácica. Mesmas palavras do pergaminho da casa, mas escritas de forma mais urgente — letras pressionadas fundo. Parece ser o original. Tem o mesmo efeito no ritual.',
-     'Você vê os ossos cuidadosamente dispostos mas não encontra nada além deles.', 50.0, 70.0, true, 3);
+     'Você vê os ossos cuidadosamente dispostos mas não encontra nada além deles.')
+  ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
+  WHERE spi.scene_id = v_scene5_id
+  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
 
   -- Cena 2.3a (pacífico)
-  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, x_coordinate, y_coordinate, enabled, sort_order) VALUES
-    (v_scene6a_id, v_poi_altar_arcano,  'Altar arcano central', 'object', 'arcana', 15,
+  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
+    (v_scene6a_id, v_poi_altar_arcano, 'Altar arcano central',              'object',         50.0, 40.0, true, 1),
+    (v_scene6a_id, v_poi_armadilha,    'Armadilha de pressão',              'trap',           45.0, 65.0, true, 2),
+    (v_scene6a_id, v_poi_fissura_fuga, 'Fissura de fuga (canto sudeste)',   'hidden_passage', 80.0, 85.0, true, 3);
+
+  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  FROM scene_points_of_interest spi
+  JOIN (VALUES
+    (v_poi_altar_arcano, 15, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'arcana'),
      'Feitiço de conjuração de memória, escola rara. Para desfazê-lo: palavras de reconhecimento ditas em voz alta por alguém externo. Com proficiência em Arcana/Religion/Persuasion + pergaminho: sem teste. Sem pergaminho: DC 15. Uma rodada de ação. O altar dissolve-se suavemente.',
-     'Você sente o poder no altar mas não consegue discernir como funciona.', 50.0, 40.0, true, 1),
-    (v_scene6a_id, v_poi_armadilha,     'Armadilha de pressão', 'trap', 'investigation', 15,
+     'Você sente o poder no altar mas não consegue discernir como funciona.'),
+    (v_poi_armadilha,    15, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
      'Você nota a pedra levemente afundada antes de pisá-la. Pode contorná-la ou desativá-la (Thieves'' Tools DC 12).',
-     'O primeiro herói a passar a ativa. Todos a 3 metros: Con DC 12 ou cegos por 1 turno.', 45.0, 65.0, true, 2),
-    (v_scene6a_id, v_poi_fissura_fuga,  'Fissura de fuga (canto sudeste)', 'hidden_passage', 'perception', 20,
+     'O primeiro herói a passar a ativa. Todos a 3 metros: Con DC 12 ou cegos por 1 turno.'),
+    (v_poi_fissura_fuga, 20, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'perception'),
      'Fissura larga o suficiente para uma pessoa passar de lado. Túnel sobe gradualmente — rota para a superfície, emergindo 50 metros do cemitério.',
-     'Você não nota a fissura sem procurar ativamente. Procurando especificamente por saídas, DC cai para 10.', 80.0, 85.0, true, 3);
+     'Você não nota a fissura sem procurar ativamente. Procurando especificamente por saídas, DC cai para 10.')
+  ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
+  WHERE spi.scene_id = v_scene6a_id
+  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
 
   -- Cena 2.3b (conflito)
-  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, skill_check, dc, success_text, failure_text, x_coordinate, y_coordinate, enabled, sort_order) VALUES
-    (v_scene6b_id, v_poi_altar_arcano,  'Altar arcano central (ativo)', 'object', 'arcana', 15,
+  INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
+    (v_scene6b_id, v_poi_altar_arcano, 'Altar arcano central (ativo)',    'object',         50.0, 40.0, true, 1),
+    (v_scene6b_id, v_poi_armadilha,    'Armadilha de pressão',            'trap',           45.0, 65.0, true, 2),
+    (v_scene6b_id, v_poi_fissura_fuga, 'Fissura de fuga (canto sudeste)', 'hidden_passage', 80.0, 85.0, true, 3);
+
+  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  FROM scene_points_of_interest spi
+  JOIN (VALUES
+    (v_poi_altar_arcano, 15, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'arcana'),
      'Mesmo mecanismo da versão pacífica, mas pulsando vermelho escuro. Ainda pode ser desfeito: palavras de reconhecimento, mesmo durante o combate com o Wraith (Concentração, Con DC 15 enquanto recebe dano, 1 rodada). Dissolve altar e Wraith simultaneamente.',
-     'Você sente raiva cristalizada no altar — poder que não tem mais propósito além de durar.', 50.0, 40.0, true, 1),
-    (v_scene6b_id, v_poi_armadilha,     'Armadilha de pressão', 'trap', 'investigation', 15,
+     'Você sente raiva cristalizada no altar — poder que não tem mais propósito além de durar.'),
+    (v_poi_armadilha,    15, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
      'Você nota a pedra levemente afundada. Pode contorná-la ou desativá-la (Thieves'' Tools DC 12).',
-     'O primeiro herói a passar a ativa. Todos a 3 metros: Con DC 12 ou cegos por 1 turno. Barulho pode alertar o Wraith se ainda não viu os heróis.', 45.0, 65.0, true, 2),
-    (v_scene6b_id, v_poi_fissura_fuga,  'Fissura de fuga (canto sudeste)', 'hidden_passage', 'perception', 20,
+     'O primeiro herói a passar a ativa. Todos a 3 metros: Con DC 12 ou cegos por 1 turno. Barulho pode alertar o Wraith se ainda não viu os heróis.'),
+    (v_poi_fissura_fuga, 20, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'perception'),
      'Fissura larga o suficiente para uma pessoa passar de lado. Túnel sobe para a superfície. Rota de fuga viável se o grupo precisar recuar.',
-     'Você não nota a fissura sem procurar ativamente. Procurando especificamente, DC cai para 10.', 80.0, 85.0, true, 3);
+     'Você não nota a fissura sem procurar ativamente. Procurando especificamente, DC cai para 10.')
+  ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
+  WHERE spi.scene_id = v_scene6b_id
+  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
 
   -- ==========================================================
   -- SCENE NPC DIALOGUES
@@ -695,8 +808,8 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     (v_m_root, 'Você não parece assustada como os outros.', v_m_b, 2),
     (v_m_root, 'Precisamos de informações agora. Fale.',    v_m_c, 3);
 
-  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, requires_skill_check, skill, dc, success_node_id, failure_node_id, sort_order) VALUES
-    (v_m_a, 'Por que depois de Harwick especificamente?', NULL, true, 'persuasion', 13, v_m_a1s, v_m_a1f, 1);
+  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, requires_skill_check, skill_id, dc, success_node_id, failure_node_id, sort_order) VALUES
+    (v_m_a, 'Por que depois de Harwick especificamente?', NULL, true, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'persuasion'), 13, v_m_a1s, v_m_a1f, 1);
   INSERT INTO npc_dialogue_options (node_id, label, next_node_id, sort_order) VALUES
     (v_m_a, 'Alguém já tentou fazer algo a respeito?', v_m_a2, 2),
     (v_m_a1s, '(continuar)', v_m_close, 1),
@@ -706,8 +819,8 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     (v_m_b, 'O que deveria ter sido consertado?',   v_m_b2, 2),
     (v_m_b1, '(continuar)', v_m_close, 1),
     (v_m_b2, '(continuar)', v_m_close, 1);
-  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, requires_skill_check, skill, dc, success_node_id, failure_node_id, sort_order) VALUES
-    (v_m_c, 'Peço desculpas. Podemos conversar com calma?', NULL, true, 'persuasion', 10, v_m_root, NULL, 1);
+  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, requires_skill_check, skill_id, dc, success_node_id, failure_node_id, sort_order) VALUES
+    (v_m_c, 'Peço desculpas. Podemos conversar com calma?', NULL, true, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'persuasion'), 10, v_m_root, NULL, 1);
 
   -- ==========================================================
   -- NPC DIALOGUE NODES: PADRE HENWICK (cena 1.1)
@@ -915,8 +1028,8 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
   RETURNING id INTO v_opt_b2_done;
 
   -- Opção hostil → node_flee → cena 6b
-  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, requires_skill_check, skill, dc, success_node_id, failure_node_id, sort_order)
-  VALUES (v_ald_c, '"Você tem razão. O que fizeram foi injusto."', NULL, true, 'insight', 10, v_ald_a1, v_ald_flee, 1);
+  INSERT INTO npc_dialogue_options (node_id, label, next_node_id, requires_skill_check, skill_id, dc, success_node_id, failure_node_id, sort_order)
+  VALUES (v_ald_c, '"Você tem razão. O que fizeram foi injusto."', NULL, true, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'insight'), 10, v_ald_a1, v_ald_flee, 1);
 
   INSERT INTO npc_dialogue_options (node_id, label, next_node_id, sort_order)
   VALUES (v_ald_c, '"Isso não justifica o que você está fazendo."', v_ald_flee, 2)
