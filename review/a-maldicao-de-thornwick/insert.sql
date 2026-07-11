@@ -543,25 +543,7 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
   INSERT INTO scene_creatures (scene_id, creature_id, creature_name, quantity, quantity_mode, quantity_per_player, encounter_type, enabled, notes) VALUES
     (v_scene6b_id, v_cr_wraith, 'Wraith (Aldric corrompido)', 1, 'per_player', 1, 'narrative_only', true, '1800 XP/PC. HP: 67 × num_players. Não fala, não hesita. Life Drain + Specter de heróis mortos. Pronunciar "Aldric" em voz alta: Wraith hesita 1 turno. Ritual no altar durante combate (Con DC 15): dissolve Wraith simultaneamente.');
 
-  -- ==========================================================
-  -- POI ACTIONS CATALOG — todos os POIs desta campanha permitem 'investigate'
-  -- ==========================================================
-  INSERT INTO poi_actions (poi_id, action_slug) VALUES
-    (v_poi_fogueira,         'investigate'),
-    (v_poi_celeiro_porta,    'investigate'),
-    (v_poi_poco_central,     'investigate'),
-    (v_poi_oliveira_runas,   'investigate'),
-    (v_poi_passagem_secreta, 'investigate'),
-    (v_poi_fissura_fuga,     'investigate'),
-    (v_poi_altar_arcano,     'investigate'),
-    (v_poi_armadilha,        'investigate'),
-    (v_poi_esqueleto,        'investigate'),
-    (v_poi_diario,           'investigate'),
-    (v_poi_lareira,          'investigate'),
-    (v_poi_estatua,          'investigate'),
-    (v_poi_simbolo_arcano,   'investigate'),
-    (v_poi_bau_trancado,     'investigate')
-  ON CONFLICT (poi_id, action_slug) DO NOTHING;
+
 
   -- ==========================================================
   -- SCENE POINTS OF INTEREST
@@ -574,8 +556,10 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     (v_scene1_id, v_poi_celeiro_porta, 'Porta do celeiro reforçada', 'object',   75.0, 48.0, true, 2),
     (v_scene1_id, v_poi_poco_central,  'Poço central com corda nova','object',   46.0, 46.0, true, 3);
 
-  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
-  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  INSERT INTO scene_poi_actions (scene_poi_id, poi_action_id, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id,
+         (SELECT id FROM poi_actions WHERE poi_id = spi.poi_id AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'investigate')),
+         v.dc, v.skill_id, v.success_text, v.failure_text, true
   FROM scene_points_of_interest spi
   JOIN (VALUES
     (v_poi_fogueira,      NULL::INTEGER, NULL::UUID,
@@ -589,7 +573,7 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
      'Você nota apenas que a corda é nova demais para o resto do poço, coberto de musgo velho.')
   ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
   WHERE spi.scene_id = v_scene1_id
-  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
+  ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
 
   -- Cena 1.2
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
@@ -597,8 +581,10 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     (v_scene2_id, v_poi_diario,    'Diário de Aldric (bancada)', 'object',   70.0, 30.0, true, 2),
     (v_scene2_id, v_poi_lareira,   'Ervas queimadas na lareira', 'ambience', 85.0, 20.0, true, 3);
 
-  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
-  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  INSERT INTO scene_poi_actions (scene_poi_id, poi_action_id, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id,
+         (SELECT id FROM poi_actions WHERE poi_id = spi.poi_id AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'investigate')),
+         v.dc, v.skill_id, v.success_text, v.failure_text, true
   FROM scene_points_of_interest spi
   JOIN (VALUES
     (v_poi_esqueleto, 12, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
@@ -612,15 +598,17 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
      NULL::TEXT)
   ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
   WHERE spi.scene_id = v_scene2_id
-  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
+  ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
 
   -- Cena 1.3
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
     (v_scene3_id, v_poi_fogueira,     'Fogueira apagada (noite)', 'ambience', 48.0, 35.0, true, 1),
     (v_scene3_id, v_poi_bau_trancado, 'Baú trancado no celeiro', 'object',    28.0, 68.0, true, 2);
 
-  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
-  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  INSERT INTO scene_poi_actions (scene_poi_id, poi_action_id, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id,
+         (SELECT id FROM poi_actions WHERE poi_id = spi.poi_id AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'investigate')),
+         v.dc, v.skill_id, v.success_text, v.failure_text, true
   FROM scene_points_of_interest spi
   JOIN (VALUES
     (v_poi_fogueira,     NULL::INTEGER, NULL::UUID,
@@ -631,7 +619,7 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
      'Você vê o baú mas não consegue abri-lo sem acordar os aldeões dentro do celeiro.')
   ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
   WHERE spi.scene_id = v_scene3_id
-  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
+  ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
 
   -- Cena 2.1
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
@@ -639,8 +627,10 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     (v_scene4_id, v_poi_oliveira_runas,   'Altar com runas (tronco da oliveira)', 'object',         50.0, 45.0, true, 2),
     (v_scene4_id, v_poi_passagem_secreta, 'Passagem secreta entre as raízes',     'hidden_passage', 52.0, 48.0, true, 3);
 
-  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
-  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  INSERT INTO scene_poi_actions (scene_poi_id, poi_action_id, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id,
+         (SELECT id FROM poi_actions WHERE poi_id = spi.poi_id AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'investigate')),
+         v.dc, v.skill_id, v.success_text, v.failure_text, true
   FROM scene_points_of_interest spi
   JOIN (VALUES
     (v_poi_esqueleto,        10, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'investigation'),
@@ -654,7 +644,7 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
      'Você não encontra nada incomum além do solo perturbado.')
   ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
   WHERE spi.scene_id = v_scene4_id
-  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
+  ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
 
   -- Cena 2.2
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
@@ -662,8 +652,10 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     (v_scene5_id, v_poi_simbolo_arcano, 'Símbolo arcano no chão',           'ambience', 50.0, 50.0, true, 2),
     (v_scene5_id, v_poi_esqueleto,      'Ossos de Aldric sobre a laje',     'object',   50.0, 70.0, true, 3);
 
-  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
-  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  INSERT INTO scene_poi_actions (scene_poi_id, poi_action_id, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id,
+         (SELECT id FROM poi_actions WHERE poi_id = spi.poi_id AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'investigate')),
+         v.dc, v.skill_id, v.success_text, v.failure_text, true
   FROM scene_points_of_interest spi
   JOIN (VALUES
     (v_poi_estatua,        12, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'history'),
@@ -677,7 +669,7 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
      'Você vê os ossos cuidadosamente dispostos mas não encontra nada além deles.')
   ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
   WHERE spi.scene_id = v_scene5_id
-  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
+  ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
 
   -- Cena 2.3a (pacífico)
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
@@ -685,8 +677,10 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     (v_scene6a_id, v_poi_armadilha,    'Armadilha de pressão',              'trap',           45.0, 65.0, true, 2),
     (v_scene6a_id, v_poi_fissura_fuga, 'Fissura de fuga (canto sudeste)',   'hidden_passage', 80.0, 85.0, true, 3);
 
-  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
-  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  INSERT INTO scene_poi_actions (scene_poi_id, poi_action_id, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id,
+         (SELECT id FROM poi_actions WHERE poi_id = spi.poi_id AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'investigate')),
+         v.dc, v.skill_id, v.success_text, v.failure_text, true
   FROM scene_points_of_interest spi
   JOIN (VALUES
     (v_poi_altar_arcano, 15, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'arcana'),
@@ -700,7 +694,7 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
      'Você não nota a fissura sem procurar ativamente. Procurando especificamente por saídas, DC cai para 10.')
   ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
   WHERE spi.scene_id = v_scene6a_id
-  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
+  ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
 
   -- Cena 2.3b (conflito)
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
@@ -708,8 +702,10 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
     (v_scene6b_id, v_poi_armadilha,    'Armadilha de pressão',            'trap',           45.0, 65.0, true, 2),
     (v_scene6b_id, v_poi_fissura_fuga, 'Fissura de fuga (canto sudeste)', 'hidden_passage', 80.0, 85.0, true, 3);
 
-  INSERT INTO scene_poi_actions (scene_poi_id, action_slug, dc, skill_id, success_text, failure_text, enabled)
-  SELECT spi.id, 'investigate', v.dc, v.skill_id, v.success_text, v.failure_text, true
+  INSERT INTO scene_poi_actions (scene_poi_id, poi_action_id, dc, skill_id, success_text, failure_text, enabled)
+  SELECT spi.id,
+         (SELECT id FROM poi_actions WHERE poi_id = spi.poi_id AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'investigate')),
+         v.dc, v.skill_id, v.success_text, v.failure_text, true
   FROM scene_points_of_interest spi
   JOIN (VALUES
     (v_poi_altar_arcano, 15, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'arcana'),
@@ -723,7 +719,7 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
      'Você não nota a fissura sem procurar ativamente. Procurando especificamente, DC cai para 10.')
   ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
   WHERE spi.scene_id = v_scene6b_id
-  ON CONFLICT (scene_poi_id, action_slug) DO NOTHING;
+  ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
 
   -- ==========================================================
   -- SCENE NPC DIALOGUES
