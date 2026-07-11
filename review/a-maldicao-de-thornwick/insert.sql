@@ -575,6 +575,21 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
   WHERE spi.scene_id = v_scene1_id
   ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
 
+  -- Cena 1.1: Instanciar a ação de abrir (open) para os POIs aplicáveis
+  INSERT INTO scene_poi_actions (scene_poi_id, poi_action_id, dc, skill_id, success_text, failure_text, enabled)
+  VALUES 
+    (
+      (SELECT id FROM scene_points_of_interest WHERE scene_id = v_scene1_id AND poi_id = v_poi_celeiro_porta),
+      (SELECT id FROM poi_actions WHERE poi_id = v_poi_celeiro_porta AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'open')),
+      NULL, NULL, 'Você empurra a porta pesada. Ela cede com um rangido alto de dobradiças enferrujadas, revelando o interior escuro do celeiro.', NULL, true
+    ),
+    (
+      (SELECT id FROM scene_points_of_interest WHERE scene_id = v_scene1_id AND poi_id = v_poi_poco_central),
+      (SELECT id FROM poi_actions WHERE poi_id = v_poi_poco_central AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'open')),
+      NULL, NULL, 'Você gira a manivela enferrujada do poço e puxa o balde de madeira cheio de água limpa.', NULL, true
+    )
+  ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
+
   -- Cena 1.2
   INSERT INTO scene_points_of_interest (scene_id, poi_id, name, type, x_coordinate, y_coordinate, enabled, sort_order) VALUES
     (v_scene2_id, v_poi_esqueleto, 'Esqueleto no canto da casa', 'object',   15.0, 80.0, true, 1),
@@ -619,6 +634,18 @@ Diretrizes de Condução: O Wraith se dissolve em silêncio absoluto — sem gri
      'Você vê o baú mas não consegue abri-lo sem acordar os aldeões dentro do celeiro.')
   ) AS v(poi_id, dc, skill_id, success_text, failure_text) ON v.poi_id = spi.poi_id
   WHERE spi.scene_id = v_scene3_id
+  ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
+
+  -- Cena 1.3: Instanciar a ação de abrir (open) para o baú trancado
+  INSERT INTO scene_poi_actions (scene_poi_id, poi_action_id, dc, skill_id, success_text, failure_text, enabled)
+  VALUES 
+    (
+      (SELECT id FROM scene_points_of_interest WHERE scene_id = v_scene3_id AND poi_id = v_poi_bau_trancado),
+      (SELECT id FROM poi_actions WHERE poi_id = v_poi_bau_trancado AND action_id = (SELECT id FROM actions WHERE system_id = v_system_id AND target_type = 'poi' AND slug = 'open')),
+      15, (SELECT id FROM skills WHERE system_id = v_system_id AND slug = 'sleight_of_hand'),
+      'Com um estalo de metal, a fechadura se abre. O baú contém suprimentos e uma faca de prata sem cabo.',
+      'Suas ferramentas escorregam na fechadura emperrada. Ela permanece trancada.', true
+    )
   ON CONFLICT (scene_poi_id, poi_action_id) DO NOTHING;
 
   -- Cena 2.1
