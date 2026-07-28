@@ -11,6 +11,10 @@ O fantasma de Aldric existe aqui. Não está sempre visível — emerge quando s
 
 ## Narração de Abertura
 
+- **Estilo de Narração**: Voz sussurrada e reverente, como se falasse em um santuário sagrado.
+- **Efeito de Transição**: Som de rocha pesada arrastando no chão de terra, seguido pelo acendimento sutil de tochas (sopro de fogo).
+- **Trilha Sonora**: Sons de gotejamento ecoando em caverna úmida com fundo musical de sintetizador etéreo em fade-in lento.
+
 > *Leia ou parafraseie este texto quando os heróis chegarem à câmara:*
 >
 > *O corredor termina e abre para uma câmara circular de teto baixo, iluminada pelas mesmas tochas de osso e cera que acenderam sozinhas lá atrás. No centro, sobre uma laje de pedra, há um conjunto de ossos humanos dispostos com cuidado — não espalhados, não reanimados, mas organizados, como se alguém os tivesse deitado ali em paz. Nas paredes, ervas prensadas entre as pedras ainda têm cor, décadas depois. E no canto norte, onde a sombra é mais funda, há uma figura que não estava lá um segundo atrás: um homem de mãos abertas, translúcido, vestindo roupas de curandeiro que existiram há muito tempo. Ele não ataca. Ele olha. Seu rosto é o de alguém que esperou por isso por muito mais tempo do que esperava ter que esperar.*

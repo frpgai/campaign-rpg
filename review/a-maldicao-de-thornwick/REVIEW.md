@@ -34,7 +34,7 @@ level_end       = 2
 players_min     = 1
 players_max     = 4
 visibility      = "public"
-cover_image     = null (gerar com prompt incluído em README.md e campaign.md)
+cover_image     = "cover.jpg"
 ```
 
 ## Estrutura Gerada
@@ -166,5 +166,5 @@ Fórmula: `xp_threshold(N) = xp_threshold(N-1) + floor(300 * (N-1)^1.5)`
 
 - [ ] Gravar no banco de dados (aguarda aprovação explícita do Mestre: "pode gravar no banco")
 - [ ] Definir campo `encounter_type` ou `is_narrative` na API de `scene_creatures` antes de persistir cenas 2.2 e 2.3
-- [ ] Gerar imagem de capa com prompt incluído em README.md e campaign.md
+- [x] Gerar imagem de capa com prompt incluído em README.md e campaign.md (salva localmente como `cover.jpg`)
 - [ ] Revisar/atualizar pasta `introducao/` com novos dados finais (nome, visibilidade, etc.)

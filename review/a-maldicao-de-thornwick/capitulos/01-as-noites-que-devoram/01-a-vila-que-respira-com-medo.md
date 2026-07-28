@@ -9,13 +9,17 @@ Esta é a cena de estabelecimento. Os heróis aprendem o que está acontecendo �
 
 ## Narração de Abertura
 
+- **Estilo de Narração**: Voz cansada e atenta, descrevendo os detalhes sensoriais da praça com pausas longas.
+- **Efeito de Transição**: O som do vento uivante diminuindo gradualmente conforme o grupo passa o portal de entrada, dando lugar a um silêncio opressor.
+- **Trilha Sonora**: Sem música de fundo, apenas som ambiente de vento sutil e ruídos de madeira velha estalando de longe.
+
 > *Leia ou parafraseie este texto quando os heróis chegarem:*
 >
 > *A estrada que desce para Thornwick parece normal à distância — casas de pedra cinzenta, uma torre de igreja, campos de centeio dos dois lados. Mas conforme vocês se aproximam, o silêncio fica pesado demais para ser coincidência. Não há crianças. Os cães não latem. Todas as janelas estão fechadas com tábuas, e a única fogueira da praça central está apagada, com as brasas frias de horas atrás. Uma mulher velha sentada num banco de pedra olha para vocês sem surpresa, como se estivesse esperando. Do lado oposto da praça, um padre de hábito surrado se aproxima de mãos postas — não em oração, mas em súplica.*
 
 ## Prompt de Mapa
 
-> Top-down grid map of a small medieval village square, approximately 30x30 meters. Central feature: an old stone well with a dead torch on a post beside it. Surrounding buildings: a stone church with a reinforced wooden door to the north, a barn with a heavy beam across its door to the east, a row of 3-4 attached stone houses with boarded windows to the south and west. A stone bench near the well where an elderly woman sits. Cobblestone plaza, moss between the stones, a dead fire pit near the well. Overcast sky atmosphere. Style: top-down D&D 5e grid map, hand-drawn aesthetic, muted earth tones with grey stone.
+> A strictly flat 2D top-down overhead battlemap of a small medieval village square, designed for tactical RPG play. Perfect orthogonal perspective, bird's-eye view, no angle, flat projection. The center features an old stone well with a dead torch on a post and a nearby cold, extinguished campfire pit with dark grey ashes. To the north is a stone church with a reinforced wooden door. To the east is a wooden barn with a thick oak beam barricading the entrance. To the south and west, a row of weathered stone houses with boarded-up windows. The ground is made of cracked, ancient cobblestones with damp moss and dark soil growing between the cracks. The atmosphere is gloomy, foggy, and melancholic, with tendrils of mist creeping in. Style: Hand-painted gothic fantasy digital illustration, rich texture, high detail. Color palette: deep charcoal, aged gold accents, blood red undertones, moss green, pale moonlight, and muted grey stone. Gridless, clean design.
 
 ## Áreas
 
